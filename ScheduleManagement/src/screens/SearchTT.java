@@ -15,7 +15,7 @@ import myswingobjects.MyButton;
 import myswingobjects.myFont;
 
 public class SearchTT {
-	public static void main(String args []) {
+	public SearchTT() {
 		JFrame frame = new JFrame("Search Timetable");
         frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
