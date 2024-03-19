@@ -12,10 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.border.Border;
 
 public class TTTemplate extends ScreenTemplate{
 	JLabel header;
 	JPanel p[][];
+	JTable subList;
 	public TTTemplate(String title) {
 		super(title);
 		int w=800;
@@ -190,12 +192,20 @@ public class TTTemplate extends ScreenTemplate{
 		subs.setFont(new myFont(16));
 		this.getContentPane().add(subs);
 		
-		JTable subList=new JTable();
-		subList.setBounds(10,525,770,250);
-		subList.setBackground(Color.LIGHT_GRAY);
+//		JPanel subp[][]=new JPanel[15][3]; 
+//		String td[][]={{"a","b","c"}};
+		String th[]={"Subcode","Subject","Faculty_id"};
+		subList=new JTable(16,3);
+		subList.setRowHeight(15);
+		subList.setRowHeight(0, 25);
+		for(int i=0;i<3;i++)
+			subList.setValueAt(th[i], 0, i);
+		subList.setBounds(8,525-2,770+2,250+2);
+		subList.setBackground(new Color(238,238,238));
+		subList.setEnabled(false);
 		this.getContentPane().add(subList);
 		
-		this.setVisible(true);
+		//this.setVisible(true);
 	}
 	
 	class MyPane extends JLayeredPane{

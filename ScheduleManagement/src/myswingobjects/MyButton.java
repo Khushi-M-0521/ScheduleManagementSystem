@@ -10,6 +10,7 @@ public class MyButton extends JButton{
 		this.setBackground(Color.WHITE);
 		this.setForeground(Color.BLACK);
 		this.setBounds(x, y, width, height);
+		this.setFont(new myFont(12));
 		this.setFocusable(false);
 	}
 }
