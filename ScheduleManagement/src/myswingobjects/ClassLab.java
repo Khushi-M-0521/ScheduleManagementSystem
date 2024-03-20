@@ -13,8 +13,6 @@ public class ClassLab extends JPanel{
 	JPanel tt;
 	JFrame TT;
 	public void setClassPanel() {
-		//String s[]= {"hello","hi"};
-		//System.out.println("ok");
 		String subs[]=database.Database.subjects();
 		String fids[]=database.Database.facultyids();
 		String blks[]=database.Database.blks();
@@ -43,7 +41,6 @@ public class ClassLab extends JPanel{
 	
 	public ClassLab(int x,int y,JPanel parent,JPanel tt,JFrame TT){
 		this.setBounds(x,y,85,63);
-		//this.setBackground(Color.lightGray);
 		this.setLayout(null);
 		this.parent=parent;
 		this.TT=TT;
@@ -67,7 +64,6 @@ public class ClassLab extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				setLabPanel();
 			}
 			
@@ -79,7 +75,6 @@ public class ClassLab extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				setGapPanel();
 			}
 			

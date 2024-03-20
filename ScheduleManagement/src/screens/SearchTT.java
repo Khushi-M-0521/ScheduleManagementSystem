@@ -20,9 +20,6 @@ import myswingobjects.myFont;
 public class SearchTT extends ScreenTemplate{
 	public SearchTT() {
 		super("Search Timetable");
-		//JFrame frame = new JFrame("Search Timetable");
-        //frame.setSize(400, 400);
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFont font = new myFont(40);
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBounds(0, 0, 500, 500);
@@ -66,7 +63,6 @@ public class SearchTT extends ScreenTemplate{
         String[] fids=database.Database.facultyids();
         JLabel FacultyLabel = new JLabel("FacultyID:");
         JComboBox facultyComboBox = new JComboBox(fids);
-        //facultyComboBox.insertItemAt("", );
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;

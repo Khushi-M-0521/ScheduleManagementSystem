@@ -15,7 +15,6 @@ public class AddTT extends TTTemplate {
 
 	public AddTT(String title,String[] depts,String[] secs,String[] subs,String[] fids) {
 		super(title);
-		// TODO Auto-generated constructor stub
 		JComboBox dept=new JComboBox(depts);
 		dept.setBounds(130,50,100,20);
 		dept.setFont(new myFont());
@@ -39,7 +38,6 @@ public class AddTT extends TTTemplate {
 			for(int j=0;j<8;j++)
 			{ p[i][j].add( new ClassLab(0,0,p[i][j],tt,this));
 				tt.add(p[i][j]);
-			//super.repaint();
 			}
 		
 		JPanel subp=new JPanel();
@@ -66,16 +64,6 @@ public class AddTT extends TTTemplate {
 		fid.setFont(new myFont(10));
 		fid.setFocusable(false);
 		fid.setBackground(Color.white);
-		
-//		for(int i=1;i<=10;i++) {
-//			try {
-//			subList.setValueAt(subp, i, 0);
-//			subList.setValueAt(subj, i, 1);
-//			subList.setValueAt(fid, i, 2);
-//			}catch(Exception e) {
-//				System.out.println(e);
-//			}
-//		}
 		
 		MyButton submit=new MyButton("SUBMIT",680,50,100,20);
 		this.getContentPane().add(submit);

@@ -38,7 +38,6 @@ public class Database {
     	try {
 			res=stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			res=-1;
 			e.printStackTrace();
 		}finally {
@@ -65,7 +64,6 @@ public class Database {
     	try {
 			res=stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			res=-1;
 			e.printStackTrace();
 		}finally {
@@ -147,13 +145,11 @@ public class Database {
 			int i=0;
 			while(rs.next()) {
 				depts[i]=rs.getString("DEPT_ID");
-				
+				i++;
 			}
 			System.out.println(depts);
-			//System.out.println(rs.getArray("DEPT_ID"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {return depts;}
     	
@@ -169,12 +165,11 @@ public class Database {
 			while(rs.next()) {
 				fids[i]=rs.getString("FACULTY_ID");
 				System.out.println(fids[i]);
+				i++;
 			}
 			System.out.println(fids);
-			//System.out.println(rs.getArray("DEPT_ID"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {return fids;}
     }
@@ -189,14 +184,15 @@ public class Database {
 			while(rs.next()) {
 				secs[i]=rs.getString("SEC_ID");
 				System.out.println(secs[i]);
+				i++;
 			}
 			System.out.println(secs);
-			//System.out.println(rs.getArray("DEPT_ID"));
+			return secs;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {return secs;}
+			return null;
+		}
     }
     
     public static String[] subjects() {
@@ -209,12 +205,11 @@ public class Database {
 			while(rs.next()) {
 				secs[i]=rs.getString("SUB_CODE");
 				System.out.println(secs[i]);
+				i++;
 			}
 			System.out.println(secs);
-			//System.out.println(rs.getArray("DEPT_ID"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {return secs;}
     }
@@ -229,12 +224,11 @@ public class Database {
 			while(rs.next()) {
 				secs[i]=rs.getString("BLOCK_ID");
 				System.out.println(secs[i]);
+				i++;
 			}
 			System.out.println(secs);
-			//System.out.println(rs.getArray("DEPT_ID"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {return secs;}
     }
@@ -249,25 +243,28 @@ public class Database {
 			while(rs.next()) {
 				secs[i]=rs.getString("CLASSROOM_ID");
 				System.out.println(secs[i]);
+				i++;
 			}
 			System.out.println(secs);
-			//System.out.println(rs.getArray("DEPT_ID"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {return secs;}
     }
     
     public static String[][] getTT(String dept_id,String faculty_id){
-    	String query="SELECT SUB_CODE,SEC_ID,CLASSROOM_ID,BLOCK_ID,DAYY,TIMEE,DURATIONN"+
+    	String query="SELECT SUB_CODE, SEC_ID, CLASSROOM_ID, BLOCK_ID, DAYY, TIMEE, DURATIONN"+
     				" FROM CLASS_OR_LAB"+
-    				" WHERE FACULTY_ID=\'"+faculty_id+"\'";
+    				" WHERE FACULTY_ID='"+faculty_id+"'";
+    	System.out.println(query);
     	String classes[][] = null;
+    	System.out.println(query);
+    
     	try {
 			ResultSet rs=stmt.executeQuery(query);
 			classes=new String[rs.getFetchSize()][7];
 			int i=0;
+			System.out.println(rs.next());
 			while(rs.next()) {
 				classes[i][0]=rs.getString("SUB_CODE");
 				classes[i][1]=rs.getString("SEC_ID");
@@ -276,13 +273,19 @@ public class Database {
 				classes[i][4]=rs.getString("DAYY");
 				classes[i][5]=rs.getString("TIMEE");
 				classes[i][6]=rs.getString("DURATION");
-				//System.out.println(classes[i]);
+				i++;
+				System.out.println(classes[i][0]);
+				System.out.println(classes[i][1]);
+				System.out.println(classes[i][2]);
+				System.out.println(classes[i][3]);
+				System.out.println(classes[i][4]);
+				System.out.println(classes[i][5]);
+				System.out.println(classes[i][6]);
+				
 			}
 			System.out.println(classes);
-			//System.out.println(rs.getArray("DEPT_ID"));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {return classes;}
     }
@@ -304,28 +307,27 @@ public class Database {
 			classes[i][4]=rs.getString("DAYY");
 			classes[i][5]=rs.getString("TIMEE");
 			classes[i][6]=rs.getString("DURATION");
-			//System.out.println(classes[i]);
+			i++;
 		}
 		System.out.println(classes);
-		//System.out.println(rs.getArray("DEPT_ID"));
 		
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}finally {return classes;}
 }
     
     public static String[][] freeClassRooms(String day, String time){
-    	String query="SELECT CLASSROOM_ID,HAS_PROJECTOR,BLOCK_ID"+
+    	String query="SELECT CLASSROOM_ID, HAS_PROJECTOR, BLOCK_ID"+
     				" FROM CLASSROOM"+
     				" WHERE CLASSROOM_ID IN ( (SELECT CLASSROOM_ID"+
     										" FROM CLASSROOM)"+
-    										" EXCEPT"+
-    										" {SELECT CLASSROOM_ID"+
+    										" MINUS"+
+    										" (SELECT CLASSROOM_ID"+
     										" FROM CLASS_OR_LAB"+
     										" WHERE DAYY=\'"+day+"\' "+
     										" AND TIMEE=\'"+time+"\'))";
     	String classr[][] = null;
+    	System.out.println(query);
     	try {
     		ResultSet rs=stmt.executeQuery(query);
     		classr=new String[rs.getFetchSize()][3];
@@ -334,13 +336,11 @@ public class Database {
     			classr[i][0]=rs.getString("CLASSROOM_ID");
     			classr[i][1]=rs.getString("HAS_PROJECTOR");
     			classr[i][2]=rs.getString("BLOCK_ID");
-    			//System.out.println(classes[i]);
+    			i++;
     		}
     		System.out.println(classr);
-    		//System.out.println(rs.getArray("DEPT_ID"));
     		
     	} catch (SQLException e) {
-    		// TODO Auto-generated catch block
     		e.printStackTrace();
     	}finally {return classr;}
     }
@@ -350,7 +350,6 @@ public class Database {
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
             e.printStackTrace();

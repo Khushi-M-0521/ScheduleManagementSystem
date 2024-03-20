@@ -183,8 +183,6 @@ public class TTTemplate extends ScreenTemplate{
 					p[i][j].setBounds(x,y,85,63);
 					p[i][j].setLayout(null);
 					p[i][j].setOpaque(false);
-					//p[i][j].add(ne);
-					//p[i][j].setBackground(Color.lightGray);
 					tt.add(p[i][j]);
 					x+=85+2;
 				}
@@ -196,8 +194,6 @@ public class TTTemplate extends ScreenTemplate{
 		subs.setFont(new myFont(16));
 		this.getContentPane().add(subs);
 		
-//		JPanel subp[][]=new JPanel[15][3]; 
-//		String td[][]={{"a","b","c"}};
 		String th[]={"Subcode","Subject","Faculty_id"};
 		subList=new JTable(11,3);
 		subList.setRowHeight(20);
@@ -206,12 +202,8 @@ public class TTTemplate extends ScreenTemplate{
 			subList.setValueAt(th[i], 0, i);
 		subList.setBounds(8,525-2,770+2,250+2);
 		subList.setBackground(new Color(238,238,238));
-		//subList.setEnabled(false);
 		this.getContentPane().add(subList);
-		
-		//this.setVisible(true);
 	}
-	
 	
 	class MyPane extends JLayeredPane{
 		MyPane(){

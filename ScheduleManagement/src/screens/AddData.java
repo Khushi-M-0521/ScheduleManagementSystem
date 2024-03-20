@@ -28,17 +28,7 @@ public class AddData extends ScreenTemplate{
 		label1.setBounds(10, 10, 480, 50);
 		label1.setHorizontalAlignment(JLabel.CENTER);
 		this.getContentPane().add(label1);
-		
-//		myFont font=new myFont(40);
-//		 JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//	        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-//
-//	        JPanel labelPanel = new JPanel();
-//	        JLabel label1 = new JLabel("ADD DATA");
-//	        label1.setFont(font);
-//	        labelPanel.add(label1); 
-//
-//	        mainPanel.add(labelPanel);
+
 	        JPanel buttonPanel = new JPanel(new GridLayout(8, 1, 10, 10));
 	        buttonPanel.setBackground(Color.WHITE);
 	        buttonPanel.setBounds(10,50,470,420);
@@ -48,14 +38,11 @@ public class AddData extends ScreenTemplate{
 	                "NEW FACULTY HANDLING THE SUBJECT", "NEW SECTION", "NEW BATCH" };
 	        for (String name : buttonNames) {
 	            MyButton button = new MyButton(name, 5, 5, 70, 70);
-//	            button.setMargin(new Insets(40, 40, 40, 40));
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
-	                    // Perform action based on the button's name
 	                    switch (name) {
 	                        case "NEW BLOCK":
-//	                            System.out.println("ADD DATA button clicked");
 	                        	JPanel panel = new JPanel(new GridLayout(2, 2));
 	                            JTextField blockIdField = new JTextField(10);
 	                            JTextField blockNameField = new JTextField(10);
@@ -63,7 +50,6 @@ public class AddData extends ScreenTemplate{
 	                            panel.add(blockIdField);
 	                            panel.add(new JLabel("Block Name:"));
 	                            panel.add(blockNameField);
-	                            //JOptionPane op=new JOptionPane();
 	                            int result = JOptionPane.showConfirmDialog(null, panel, "Enter Block Details", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result == JOptionPane.OK_OPTION) {
 	                                String blockId = blockIdField.getText();
@@ -283,8 +269,6 @@ public class AddData extends ScreenTemplate{
 	            buttonPanel.add(button);
 	        }
 
-//	        mainPanel.add(buttonPanel);
-//	        screen.getContentPane().add(mainPanel);
 	        this.setVisible(true);
 	}
 

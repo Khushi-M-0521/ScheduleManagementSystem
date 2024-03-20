@@ -18,22 +18,13 @@ import myswingobjects.myFont;
 
 public class FirstScreen extends ScreenTemplate{
 
-//	public static database db=new database();
 	public FirstScreen(String title) {
 		super(title);
-		
-//		JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		
-		
 		JLabel scheduleLabel = new JLabel("Schedule Management");
 		scheduleLabel.setFont(new myFont(40));
 		scheduleLabel.setBounds(10, 10, 480, 100);
 		scheduleLabel.setHorizontalAlignment(JLabel.CENTER);
 		this.getContentPane().add(scheduleLabel);
-//		JPanel labelPanel = new JPanel();
-//		labelPanel.add(scheduleLabel);
-//		mainPanel.add(labelPanel);
 		
 		JPanel buttonPanel = new JPanel(new GridLayout(4, 2, 10, 10));
 		buttonPanel.setBounds(10,110,470,370);
@@ -45,14 +36,11 @@ public class FirstScreen extends ScreenTemplate{
         
         for (String name : buttonNames) {
             MyButton button = new MyButton(name, 10, 10, 70, 70);
-//            button.setMargin(new Insets(40, 40, 40, 40));
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Perform action based on the button's name
                     switch (name) {
                         case "ADD DATA":
-                            //System.out.println("ADD DATA button clicked");
                         	new AddData();
                             break;
                         case "ADD TIMETABLE":
@@ -61,7 +49,6 @@ public class FirstScreen extends ScreenTemplate{
                         	String fids[]=database.Database.facultyids();
                         	String subs[]=database.Database.subjects();
                         	new AddTT("ADD TIMETABLE",depts,secs,subs,fids);
-                            //System.out.println("ADD TIMETABLE button clicked");
                             break;
                         case "FETCH TIMETABLE":
                         	new SearchTT();
@@ -84,9 +71,7 @@ public class FirstScreen extends ScreenTemplate{
             });
             buttonPanel.add(button);
         }
-        //mainPanel.add(buttonPanel);
         
-        //this.getContentPane().add(mainPanel);
         this.setVisible(true);
 		
 	}
