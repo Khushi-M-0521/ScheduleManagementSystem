@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,33 +17,32 @@ import myswingobjects.MyButton;
 import myswingobjects.ScreenTemplate;
 import myswingobjects.myFont;
 
-public class AddData {
-	public static void main(String args []) {
-		ScreenTemplate screen = new ScreenTemplate("ADD DATA");
-		myFont font=new myFont(40);
-		 JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+import screens.FirstScreen;
+import database.Database;
 
-	        JPanel labelPanel = new JPanel();
-	        JLabel label1 = new JLabel("ADD DATA");
-	        label1.setFont(font);
-	        labelPanel.add(label1); 
+public class AddData extends ScreenTemplate{
+	public AddData() {
+		super("ADD DATA");
+		JLabel label1 = new JLabel("ADD DATA");
+		label1.setFont(new myFont(40));
+		label1.setBounds(10, 10, 480, 50);
+		label1.setHorizontalAlignment(JLabel.CENTER);
+		this.getContentPane().add(label1);
 
-	        mainPanel.add(labelPanel);
 	        JPanel buttonPanel = new JPanel(new GridLayout(8, 1, 10, 10));
+	        buttonPanel.setBackground(Color.WHITE);
+	        buttonPanel.setBounds(10,50,470,420);
 	        buttonPanel.setBorder(new EmptyBorder(30, 30, 30, 30));
+	        this.getContentPane().add(buttonPanel);
 	        String[] buttonNames = { "NEW BLOCK", "NEW CLASSROOM", "NEW FACULTY", "NEW DEPARTMENT", "NEW SUBJECT",
 	                "NEW FACULTY HANDLING THE SUBJECT", "NEW SECTION", "NEW BATCH" };
 	        for (String name : buttonNames) {
 	            MyButton button = new MyButton(name, 5, 5, 70, 70);
-//	            button.setMargin(new Insets(40, 40, 40, 40));
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
-	                    // Perform action based on the button's name
 	                    switch (name) {
 	                        case "NEW BLOCK":
-//	                            System.out.println("ADD DATA button clicked");
 	                        	JPanel panel = new JPanel(new GridLayout(2, 2));
 	                            JTextField blockIdField = new JTextField(10);
 	                            JTextField blockNameField = new JTextField(10);
@@ -54,6 +54,14 @@ public class AddData {
 	                            if (result == JOptionPane.OK_OPTION) {
 	                                String blockId = blockIdField.getText();
 	                                String blockName = blockNameField.getText();
+	                                int res=database.Database.addblock(blockId,blockName);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                            break;
 	                        case "NEW CLASSROOM":
@@ -72,6 +80,14 @@ public class AddData {
 	                                String classroomId = classroomIdField.getText();
 	                                String hasprojector = HasprojectorField.getText();
 	                                String Blockid=BlockIdField.getText();
+	                                int res=database.Database.addclassroom(classroomId,hasprojector,Blockid);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                        	
 	                            break;
@@ -99,6 +115,14 @@ public class AddData {
 		                                String facultyemail = emailField.getText();
 		                                String phonenumber = phonenumberField.getText();
 		                                String deptid = depatidField.getText();
+		                                int res=database.Database.addfaculty(facultyId,facultyname,facultyemail,phonenumber,deptid);
+		                                if(res!=0) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                	dispose();
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 		                            }
 		                        	
 		                            break;
@@ -114,6 +138,14 @@ public class AddData {
 	                            if (result3 == JOptionPane.OK_OPTION) {
 	                                String deptId = deptIdField.getText();
 	                                String deptName = deptNameField.getText();
+	                                int res=database.Database.adddepartment(deptId,deptName);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                            	break;
 	                            
@@ -133,6 +165,14 @@ public class AddData {
 	                                String subcode = subcodeField.getText();
 	                                String subname = subnameField.getText();
 	                                String subabbrevation=subabbField.getText();
+	                                int res=database.Database.addsubject(subcode,subname,subabbrevation);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                        	
 	                            break; 
@@ -148,6 +188,14 @@ public class AddData {
 	                            if (result5 == JOptionPane.OK_OPTION) {
 	                                String subcode =subjcodeField.getText();
 	                                String facultyid = facultyyidField.getText();
+	                                int res=database.Database.addhandles(subcode,facultyid);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                        	break;
 	                        	
@@ -172,9 +220,17 @@ public class AddData {
 		                            if (result6 == JOptionPane.OK_OPTION) {
 		                                String sectionId = secIdField.getText();
 		                                String secname = secField.getText();
-		                                String semyemail = semField.getText();
+		                                String sem = semField.getText();
 		                                String academicyear = academicyearField.getText();
 		                                String facultyid = facultyidField.getText();
+		                                int res=database.Database.addsection(sectionId,secname,sem,academicyear ,facultyid);
+		                                if(res!=0) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                	dispose();
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 		                            }
 	                        	
 	                        	break;
@@ -190,7 +246,16 @@ public class AddData {
 	                            if (result7 == JOptionPane.OK_OPTION) {
 	                                String secId =secidField.getText();
 	                                String BatchName = BatchnameField.getText();
+	                                int res=database.Database.addbatch(secId,BatchName);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
+	                            
 	                        	break;
 	            
 	                        	
@@ -204,9 +269,7 @@ public class AddData {
 	            buttonPanel.add(button);
 	        }
 
-	        mainPanel.add(buttonPanel);
-	        screen.getContentPane().add(mainPanel);
-	        screen.setVisible(true);
+	        this.setVisible(true);
 	}
 
 }

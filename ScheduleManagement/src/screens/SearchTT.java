@@ -6,34 +6,39 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import myswingobjects.MyButton;
+import myswingobjects.ScreenTemplate;
 import myswingobjects.myFont;
 
-public class SearchTT {
-	public static void main(String args []) {
-		JFrame frame = new JFrame("Search Timetable");
-        frame.setSize(400, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class SearchTT extends ScreenTemplate{
+	public SearchTT() {
+		super("Search Timetable");
         myFont font = new myFont(40);
         JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBounds(0, 0, 500, 500);
+        this.getContentPane().add(mainPanel);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(15, 15, 15, 15);
-
+        
         JLabel titleLabel = new JLabel("Search Timetable");
         titleLabel.setFont(font);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         mainPanel.add(titleLabel, gbc);
+        
 
+        String[] deptids=database.Database.deptIds();
         JLabel departmentLabel = new JLabel("Department:");
-        JTextField departmentTextField = new JTextField(20);
+        JComboBox<String> departmentComboBox = new JComboBox<String>(deptids);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -41,35 +46,52 @@ public class SearchTT {
         mainPanel.add(departmentLabel, gbc);
         gbc.gridx = 1;
         gbc.gridy = 1;
-        mainPanel.add(departmentTextField, gbc);
+        mainPanel.add(departmentComboBox, gbc);
 
+        String[] secs=database.Database.sections();
         JLabel sectionLabel = new JLabel("Section:");
-        JTextField sectionTextField = new JTextField(20);
+        JComboBox sectionComboBox = new JComboBox(secs);
+        sectionComboBox.insertItemAt(null, 0);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
         mainPanel.add(sectionLabel, gbc);
         gbc.gridx = 1;
         gbc.gridy = 2;
-        mainPanel.add(sectionTextField, gbc);
+        mainPanel.add(sectionComboBox, gbc);
         
+        String[] fids=database.Database.facultyids();
         JLabel FacultyLabel = new JLabel("FacultyID:");
-        JTextField facultyTextField = new JTextField(20);
+        JComboBox facultyComboBox = new JComboBox(fids);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;
         mainPanel.add(FacultyLabel, gbc);
         gbc.gridx = 1;
         gbc.gridy = 3;
-        mainPanel.add(facultyTextField, gbc);
+        mainPanel.add(facultyComboBox, gbc);
 
         MyButton searchButton = new MyButton("Search", 0, 0, 100, 30);
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String department = departmentTextField.getText();
-                String section = sectionTextField.getText();
-                String faculty=facultyTextField.getText();
+                String department =(String) departmentComboBox.getSelectedItem();
+                String section = (String) sectionComboBox.getSelectedItem();
+                String faculty=(String)facultyComboBox.getSelectedItem();
+                if(section==null && faculty==null)
+                	JOptionPane.showMessageDialog(null, "Enter either section or faculty", "Invalid", JOptionPane.ERROR_MESSAGE);
+                else if(section==null) {
+                	String res[][]=database.Database.getTT(department, faculty);
+                	new ResultTT(res,department,faculty,true);
+                }
+                else if(faculty==null) {
+                	String res[][]=database.Database.getTT(department, section);
+                	new ResultTT(res,department,section,false);
+                }
+                else {
+                	JOptionPane.showMessageDialog(null, "Enter either section or faculty", "Invalid", JOptionPane.ERROR_MESSAGE);
+                }
+               
                 System.out.println("Searching for department: " + department + ", section: " + section+", faculty: "+faculty);
             }
         });
@@ -79,7 +101,7 @@ public class SearchTT {
         gbc.anchor = GridBagConstraints.CENTER;
         mainPanel.add(searchButton, gbc);
 
-        frame.add(mainPanel);
-        frame.setVisible(true);
+        //this.add(mainPanel);
+        this.setVisible(true);
 	}
 }

@@ -16,8 +16,9 @@ import javax.swing.border.Border;
 
 public class TTTemplate extends ScreenTemplate{
 	JLabel header;
-	JPanel p[][];
-	JTable subList;
+	protected JPanel p[][]=new JPanel[6][8];
+	protected JTable subList;
+	protected JPanel tt;
 	public TTTemplate(String title) {
 		super(title);
 		int w=800;
@@ -25,23 +26,23 @@ public class TTTemplate extends ScreenTemplate{
 		this.getContentPane().setLayout(null);
 		this.setBounds(10, 5, w, h);
 		
-		header=new JLabel("Header");
+		header=new JLabel(title);
 		header.setBounds(w/2-50, 10, 200, 20);
 		header.setFont(new myFont(Font.BOLD,20));
 		this.getContentPane().add(header);
 		
 		JLabel dept=new JLabel("Department : ");
-		dept.setBounds(50,50,100,20);
+		dept.setBounds(20,50,100,20);
 		dept.setFont(new myFont(16));
 		this.getContentPane().add(dept);
 		
 		JLabel sec=new JLabel("Section : ");
-		sec.setBounds(300,50,100,20);
+		sec.setBounds(240,50,100,20);
 		sec.setFont(new myFont(16));
 		this.getContentPane().add(sec);
 		
 		JLabel classMentor=new JLabel("Class Mentor : ");
-		classMentor.setBounds(550,50,100,20);
+		classMentor.setBounds(460,50,100,20);
 		classMentor.setFont(new myFont(16));
 		this.getContentPane().add(classMentor);
 		
@@ -51,9 +52,9 @@ public class TTTemplate extends ScreenTemplate{
 		TT.setLayout(null);
 		this.getContentPane().add(TT);
 		
-		JPanel tt=new JPanel();
+		tt=new JPanel();
 		//tt.setBackground(Color.lightGray);
-		tt.setBounds(10,80,770,400);
+		tt.setBounds(10,80,770,410);
 		tt.setLayout(null);
 		this.getContentPane().add(tt,JLayeredPane.DRAG_LAYER);
 		
@@ -169,7 +170,7 @@ public class TTTemplate extends ScreenTemplate{
 			lnh.setHorizontalAlignment(JLabel.CENTER);
 			tt.add(lnh);
 			
-			p=new JPanel[6][8];
+			
 			int x=32;
 			int y=22;
 			for(int i=0;i<6;i++)
@@ -180,7 +181,8 @@ public class TTTemplate extends ScreenTemplate{
 					if(j==3 || j==5) x+=22;
 					p[i][j]=new JPanel();
 					p[i][j].setBounds(x,y,85,63);
-					//p[i][j].setBackground(Color.lightGray);
+					p[i][j].setLayout(null);
+					p[i][j].setOpaque(false);
 					tt.add(p[i][j]);
 					x+=85+2;
 				}
@@ -192,20 +194,15 @@ public class TTTemplate extends ScreenTemplate{
 		subs.setFont(new myFont(16));
 		this.getContentPane().add(subs);
 		
-//		JPanel subp[][]=new JPanel[15][3]; 
-//		String td[][]={{"a","b","c"}};
 		String th[]={"Subcode","Subject","Faculty_id"};
-		subList=new JTable(16,3);
-		subList.setRowHeight(15);
+		subList=new JTable(11,3);
+		subList.setRowHeight(20);
 		subList.setRowHeight(0, 25);
 		for(int i=0;i<3;i++)
 			subList.setValueAt(th[i], 0, i);
 		subList.setBounds(8,525-2,770+2,250+2);
 		subList.setBackground(new Color(238,238,238));
-		subList.setEnabled(false);
 		this.getContentPane().add(subList);
-		
-		//this.setVisible(true);
 	}
 	
 	class MyPane extends JLayeredPane{

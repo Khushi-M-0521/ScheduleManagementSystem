@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,48 +11,59 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import database.Database;
 import myswingobjects.MyButton;
 import myswingobjects.ScreenTemplate;
 import myswingobjects.myFont;
 
-public class FirstScreen {
+public class FirstScreen extends ScreenTemplate{
 
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ScreenTemplate screen = new ScreenTemplate("HomeScreen");
-		myFont font=new myFont(40);
-
-        JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-
-        JPanel labelPanel = new JPanel();
-        JLabel scheduleLabel = new JLabel("Schedule Management");
-        scheduleLabel.setFont(font);
-        labelPanel.add(scheduleLabel);
-//        labelPanel.setBorder(new EmptyBorder(0, 0, 10, 0)); 
-
-        mainPanel.add(labelPanel);
-
-        JPanel buttonPanel = new JPanel(new GridLayout(4, 2, 10, 10));
+	public FirstScreen(String title) {
+		super(title);
+		JLabel scheduleLabel = new JLabel("Schedule Management");
+		scheduleLabel.setFont(new myFont(40));
+		scheduleLabel.setBounds(10, 10, 480, 100);
+		scheduleLabel.setHorizontalAlignment(JLabel.CENTER);
+		this.getContentPane().add(scheduleLabel);
+		
+		JPanel buttonPanel = new JPanel(new GridLayout(4, 2, 10, 10));
+		buttonPanel.setBounds(10,110,470,370);
         buttonPanel.setBorder(new EmptyBorder(30, 30, 30, 30));
+        buttonPanel.setBackground(Color.WHITE);
+        this.getContentPane().add(buttonPanel);
         String[] buttonNames = { "ADD DATA", "ADD TIMETABLE", "FETCH TIMETABLE", "FETCH CLASSROOM", "DELETE DATA",
                 "DELETE TIMETABLE", "UPDATE DATA", "UPDATE TIMETABLE" };
+        
         for (String name : buttonNames) {
             MyButton button = new MyButton(name, 10, 10, 70, 70);
-//            button.setMargin(new Insets(40, 40, 40, 40));
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Perform action based on the button's name
                     switch (name) {
                         case "ADD DATA":
-                            System.out.println("ADD DATA button clicked");
-                        	AddData.main(new String[]{});
+                        	new AddData();
                             break;
                         case "ADD TIMETABLE":
-                            System.out.println("ADD TIMETABLE button clicked");
+                        	String depts[]= database.Database.deptIds();
+                        	String secs[]=database.Database.sections();
+                        	String fids[]=database.Database.facultyids();
+                        	String subs[]=database.Database.subjects();
+                        	new AddTT("ADD TIMETABLE",depts,secs,subs,fids);
                             break;
+                        case "FETCH TIMETABLE":
+                        	new SearchTT();
+                        	break;
+                        case "FETCH CLASSROOM":
+                        	new SearchClassroom();
+                        	break;
+                        case "DELETE DATA":
+                        	break;
+                        case "DELETE TIMETABLE":
+                        	break;
+                        case "UPDATE DATA":
+                        	break;
+                        case "UPDATE TIMETABLE":
+                        	break;
                         default:
                             break;
                     }
@@ -59,12 +71,22 @@ public class FirstScreen {
             });
             buttonPanel.add(button);
         }
+        
+        this.setVisible(true);
+		
+	}
 
-        mainPanel.add(buttonPanel);
+	public static void main(String[] args) {
+		database.Database.createConnection();
+		database.Database.deptIds();
+		database.Database.facultyids();
+		database.Database.sections();
+		new FirstScreen("Home Screen");
 
-        screen.getContentPane().add(mainPanel);
-        screen.setVisible(true);
-
+	}
+	
+	public void dispose(){
+		database.Database.closeAll();
 	}
 
 }
