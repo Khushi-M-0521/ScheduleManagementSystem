@@ -13,10 +13,30 @@ public class ClassLab extends JPanel{
 	JPanel tt;
 	JFrame TT;
 	public void setClassPanel() {
-		String s[]= {"hello","hi"};
+		//String s[]= {"hello","hi"};
 		//System.out.println("ok");
+		String subs[]=database.Database.subjects();
+		String fids[]=database.Database.facultyids();
+		String blks[]=database.Database.blks();
+		String clrs[]=database.Database.clrs();
 		parent.remove(this);
-		parent.add(new ClassPanel(s,s,s,s,0,0));
+		parent.add(new ClassPanel(subs,fids,blks,clrs,0,0));
+		tt.add(parent);
+		TT.repaint();
+	}
+	
+	public void setGapPanel() {
+		JPanel p1=new JPanel();
+		p1.setBounds(0,0,85,63);
+		parent.remove(this);
+		parent.add(p1);
+		tt.add(parent);
+		TT.repaint();
+	}
+	
+	public void setLabPanel() {
+		parent.remove(this);
+		parent.add(new Lab1(4,0,0));
 		tt.add(parent);
 		TT.repaint();
 	}
@@ -43,9 +63,27 @@ public class ClassLab extends JPanel{
 		this.add(cls);
 		
 		MyButton lab=new MyButton("LAB",5,5+19,75,14);
+		lab.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setLabPanel();
+			}
+			
+		});
 		this.add(lab);
 		
 		MyButton gap=new MyButton("GAP",5,5+24+14,75,14);
+		gap.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setGapPanel();
+			}
+			
+		});
 		this.add(gap);
 		
 	}

@@ -11,13 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import database.Database;
 import myswingobjects.MyButton;
 import myswingobjects.ScreenTemplate;
 import myswingobjects.myFont;
 
 public class FirstScreen extends ScreenTemplate{
 
-
+//	public static database db=new database();
 	public FirstScreen(String title) {
 		super(title);
 		
@@ -55,8 +56,11 @@ public class FirstScreen extends ScreenTemplate{
                         	new AddData();
                             break;
                         case "ADD TIMETABLE":
-                        	String s[]= {"s1","s2","s3"};
-                        	new AddTT("ADD TIMETABLE",s,s,s,s);
+                        	String depts[]= database.Database.deptIds();
+                        	String secs[]=database.Database.sections();
+                        	String fids[]=database.Database.facultyids();
+                        	String subs[]=database.Database.subjects();
+                        	new AddTT("ADD TIMETABLE",depts,secs,subs,fids);
                             //System.out.println("ADD TIMETABLE button clicked");
                             break;
                         case "FETCH TIMETABLE":
@@ -87,9 +91,17 @@ public class FirstScreen extends ScreenTemplate{
 		
 	}
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
+		database.Database.createConnection();
+		database.Database.deptIds();
+		database.Database.facultyids();
+		database.Database.sections();
 		new FirstScreen("Home Screen");
 
+	}
+	
+	public void dispose(){
+		database.Database.closeAll();
 	}
 
 }

@@ -17,6 +17,9 @@ import myswingobjects.MyButton;
 import myswingobjects.ScreenTemplate;
 import myswingobjects.myFont;
 
+import screens.FirstScreen;
+import database.Database;
+
 public class AddData extends ScreenTemplate{
 	public AddData() {
 		super("ADD DATA");
@@ -60,10 +63,19 @@ public class AddData extends ScreenTemplate{
 	                            panel.add(blockIdField);
 	                            panel.add(new JLabel("Block Name:"));
 	                            panel.add(blockNameField);
+	                            //JOptionPane op=new JOptionPane();
 	                            int result = JOptionPane.showConfirmDialog(null, panel, "Enter Block Details", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result == JOptionPane.OK_OPTION) {
 	                                String blockId = blockIdField.getText();
 	                                String blockName = blockNameField.getText();
+	                                int res=database.Database.addblock(blockId,blockName);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                            break;
 	                        case "NEW CLASSROOM":
@@ -82,6 +94,14 @@ public class AddData extends ScreenTemplate{
 	                                String classroomId = classroomIdField.getText();
 	                                String hasprojector = HasprojectorField.getText();
 	                                String Blockid=BlockIdField.getText();
+	                                int res=database.Database.addclassroom(classroomId,hasprojector,Blockid);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                        	
 	                            break;
@@ -109,6 +129,14 @@ public class AddData extends ScreenTemplate{
 		                                String facultyemail = emailField.getText();
 		                                String phonenumber = phonenumberField.getText();
 		                                String deptid = depatidField.getText();
+		                                int res=database.Database.addfaculty(facultyId,facultyname,facultyemail,phonenumber,deptid);
+		                                if(res!=0) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                	dispose();
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 		                            }
 		                        	
 		                            break;
@@ -124,6 +152,14 @@ public class AddData extends ScreenTemplate{
 	                            if (result3 == JOptionPane.OK_OPTION) {
 	                                String deptId = deptIdField.getText();
 	                                String deptName = deptNameField.getText();
+	                                int res=database.Database.adddepartment(deptId,deptName);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                            	break;
 	                            
@@ -143,6 +179,14 @@ public class AddData extends ScreenTemplate{
 	                                String subcode = subcodeField.getText();
 	                                String subname = subnameField.getText();
 	                                String subabbrevation=subabbField.getText();
+	                                int res=database.Database.addsubject(subcode,subname,subabbrevation);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                        	
 	                            break; 
@@ -158,6 +202,14 @@ public class AddData extends ScreenTemplate{
 	                            if (result5 == JOptionPane.OK_OPTION) {
 	                                String subcode =subjcodeField.getText();
 	                                String facultyid = facultyyidField.getText();
+	                                int res=database.Database.addhandles(subcode,facultyid);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
 	                        	break;
 	                        	
@@ -182,9 +234,17 @@ public class AddData extends ScreenTemplate{
 		                            if (result6 == JOptionPane.OK_OPTION) {
 		                                String sectionId = secIdField.getText();
 		                                String secname = secField.getText();
-		                                String semyemail = semField.getText();
+		                                String sem = semField.getText();
 		                                String academicyear = academicyearField.getText();
 		                                String facultyid = facultyidField.getText();
+		                                int res=database.Database.addsection(sectionId,secname,sem,academicyear ,facultyid);
+		                                if(res!=0) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                	dispose();
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 		                            }
 	                        	
 	                        	break;
@@ -200,7 +260,16 @@ public class AddData extends ScreenTemplate{
 	                            if (result7 == JOptionPane.OK_OPTION) {
 	                                String secId =secidField.getText();
 	                                String BatchName = BatchnameField.getText();
+	                                int res=database.Database.addbatch(secId,BatchName);
+	                                if(res!=0) {
+	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                	dispose();
+	                                }
+	                                else {
+	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                }
 	                            }
+	                            
 	                        	break;
 	            
 	                        	
