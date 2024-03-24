@@ -52,6 +52,7 @@ public class SearchTT extends ScreenTemplate{
         JLabel sectionLabel = new JLabel("Section:");
         JComboBox sectionComboBox = new JComboBox(secs);
         sectionComboBox.insertItemAt(null, 0);
+        sectionComboBox.setSelectedIndex(0);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
@@ -63,6 +64,7 @@ public class SearchTT extends ScreenTemplate{
         String[] fids=database.Database.facultyids();
         JLabel FacultyLabel = new JLabel("FacultyID:");
         JComboBox facultyComboBox = new JComboBox(fids);
+        sectionComboBox.insertItemAt(null, 0);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;
@@ -85,7 +87,7 @@ public class SearchTT extends ScreenTemplate{
                 	new ResultTT(res,department,faculty,true);
                 }
                 else if(faculty==null) {
-                	String res[][]=database.Database.getTT(department, section);
+                	String res[][]=database.Database.getSecTT(department, section);
                 	new ResultTT(res,department,section,false);
                 }
                 else {

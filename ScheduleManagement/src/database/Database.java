@@ -264,6 +264,7 @@ public class Database {
 			ResultSet rs=stmt.executeQuery(query);
 			classes=new String[rs.getFetchSize()][7];
 			int i=0;
+			rs.getBoolean("SUB_CODE");
 			System.out.println(rs.next());
 			while(rs.next()) {
 				classes[i][0]=rs.getString("SUB_CODE");
