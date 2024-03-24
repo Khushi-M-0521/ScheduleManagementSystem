@@ -32,7 +32,7 @@ public class FirstScreen extends ScreenTemplate{
         buttonPanel.setBackground(Color.WHITE);
         this.getContentPane().add(buttonPanel);
         String[] buttonNames = { "ADD DATA", "ADD TIMETABLE", "FETCH TIMETABLE", "FETCH CLASSROOM", "DELETE DATA",
-                "DELETE TIMETABLE", "UPDATE DATA", };
+                "DELETE TIMETABLE", "UPDATE DATA"};
         
         for (String name : buttonNames) {
             MyButton button = new MyButton(name, 10, 10, 70, 70);
