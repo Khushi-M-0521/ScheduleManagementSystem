@@ -132,7 +132,8 @@ public class AddData extends ScreenTemplate{
 		                                if(facultyId.isEmpty() || facultyname.isEmpty() || facultyemail.isEmpty() || phonenumber.isEmpty() || deptid.isEmpty())
 		                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 		                                else {
-		                                	int res=database.Database.addfaculty(facultyId,facultyname,facultyemail,phonenumber,deptid);
+		                                	String designation="associate";
+		                                	int res=database.Database.addfaculty(facultyId,facultyname,phonenumber,facultyemail, designation,deptid);
 		                                	if(res!=-1) {
 		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
 		                                		//FacultyIdField.setText("");
@@ -227,7 +228,7 @@ public class AddData extends ScreenTemplate{
 	                                if(subcode.isEmpty() || facultyid.isEmpty())
 	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
-	                                	int res=database.Database.addhandles(subcode,facultyid);
+	                                	int res=database.Database.addhandles(facultyid,subcode,facultyid,subcode);
 	                                	if(res!=0) {
 	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
 	                                		//subjcodeField.setText("");
@@ -285,34 +286,34 @@ public class AddData extends ScreenTemplate{
 		                            }
 	                        	
 	                        	break;
-	                        case "NEW BATCH":
-	                        	JPanel panel7 = new JPanel(new GridLayout(2, 2));
-	                            JTextField secidField = new JTextField(10);
-	                            JTextField BatchnameField = new JTextField(10);
-	                            panel7.add(new JLabel("Section Id:"));
-	                            panel7.add(secidField);
-	                            panel7.add(new JLabel("Batch Name:"));
-	                            panel7.add(BatchnameField);
-	                            int result7 = JOptionPane.showConfirmDialog(null, panel7, "Enter Batch Details", JOptionPane.OK_CANCEL_OPTION);
-	                            if (result7 == JOptionPane.OK_OPTION) {
-	                                String secId =secidField.getText();
-	                                String BatchName = BatchnameField.getText();
-	                                if(secId.isEmpty() || BatchName.isEmpty())
-	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
-	                                else {
-	                                	int res=database.Database.addbatch(secId,BatchName);
-	                                	if(res!=0) {
-	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
-	                                		dispose();
-	                                	}
-	                                	else {
-	                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
-	                                	}
-	                                }
-	                                
-	                            }
-	                            
-	                        	break;
+//	                        case "NEW BATCH":
+//	                        	JPanel panel7 = new JPanel(new GridLayout(2, 2));
+//	                            JTextField secidField = new JTextField(10);
+//	                            JTextField BatchnameField = new JTextField(10);
+//	                            panel7.add(new JLabel("Section Id:"));
+//	                            panel7.add(secidField);
+//	                            panel7.add(new JLabel("Batch Name:"));
+//	                            panel7.add(BatchnameField);
+//	                            int result7 = JOptionPane.showConfirmDialog(null, panel7, "Enter Batch Details", JOptionPane.OK_CANCEL_OPTION);
+//	                            if (result7 == JOptionPane.OK_OPTION) {
+//	                                String secId =secidField.getText();
+//	                                String BatchName = BatchnameField.getText();
+//	                                if(secId.isEmpty() || BatchName.isEmpty())
+//	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
+//	                                else {
+//	                                	int res=database.Database.addbatch(secId,BatchName);
+//	                                	if(res!=0) {
+//	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+//	                                		dispose();
+//	                                	}
+//	                                	else {
+//	                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+//	                                	}
+//	                                }
+//	                                
+//	                            }
+//	                            
+//	                        	break;
 	                    }
 	                }
 	            });
