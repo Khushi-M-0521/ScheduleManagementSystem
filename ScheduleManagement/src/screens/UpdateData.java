@@ -51,12 +51,15 @@ public class UpdateData extends ScreenTemplate {
 	                            int result = JOptionPane.showConfirmDialog(null, panel, "Enter respective Block_id to update", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result == JOptionPane.OK_OPTION) {
 	                                String blockId = blockIdField.getText();
+	                                if (blockId.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Block ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return;
+	                                }
 	                                JPanel editPanel = new JPanel(new GridLayout(2, 2));
 	                                JTextField blockNameField = new JTextField(10);
 	                                // Populate other fields with the retrieved details
 	                                editPanel.add(new JLabel("Block Name:"));
 	                                editPanel.add(blockNameField);
-	                                // Add other fields to the editPanel
 	                                int editResult = JOptionPane.showConfirmDialog(null, editPanel, "Edit Block Details", JOptionPane.OK_CANCEL_OPTION);
 	                                if (editResult == JOptionPane.OK_OPTION) {
 	                                    String updatedBlockName = blockNameField.getText();
@@ -80,6 +83,10 @@ public class UpdateData extends ScreenTemplate {
 	                            int result1 = JOptionPane.showConfirmDialog(null, panel1, "Enter respective Classroom_id to update", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result1 == JOptionPane.OK_OPTION) {
 	                                String classroomId = classroomIdField.getText();
+	                                if (classroomId.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Classroom ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return;
+	                                }
 	                                JPanel editPanel = new JPanel(new GridLayout(3, 2));
 	                                JTextField hasProjectorField = new JTextField(10);
 	                                JTextField blockIddField = new JTextField(10);
@@ -110,6 +117,10 @@ public class UpdateData extends ScreenTemplate {
 		                            int result2 = JOptionPane.showConfirmDialog(null, panel2, "Enter respective Faculty_id to update", JOptionPane.OK_CANCEL_OPTION);
 		                            if (result2 == JOptionPane.OK_OPTION) {
 		                                String facultyId = FacultyIdField.getText();
+		                                if (facultyId.isEmpty()) {
+		                                    JOptionPane.showMessageDialog(null, "Faculty ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+		                                    return;
+		                                }
 		                                JPanel editPanel = new JPanel(new GridLayout(5, 2));
 		                                JTextField facultyNameField = new JTextField(10);
 		                                JTextField emailField = new JTextField(10);
@@ -154,6 +165,10 @@ public class UpdateData extends ScreenTemplate {
 	                            int result3 = JOptionPane.showConfirmDialog(null, panel3, "Enter respective department_id to update", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result3 == JOptionPane.OK_OPTION) {
 	                                String deptId = deptIdField.getText();
+	                                if (deptId.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Department ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return;
+	                                }
 	                                JPanel editPanel = new JPanel(new GridLayout(1, 2));
 	                                JTextField departmentNameField = new JTextField(10);
 	                                // Populate other fields with the retrieved details
@@ -182,6 +197,10 @@ public class UpdateData extends ScreenTemplate {
 	                            int result4 = JOptionPane.showConfirmDialog(null, panel4, "Enter respective Subject code to update", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result4 == JOptionPane.OK_OPTION) {
 	                                String subcode = subcodeField.getText();
+	                                if (subcode.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Subject Code cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return;
+	                                }
 	                                JPanel editPanel = new JPanel(new GridLayout(1, 2));
 	                                JTextField subjectNameField = new JTextField(10);
 	                                JTextField subjectAbbreviationField = new JTextField(10);
@@ -216,6 +235,10 @@ public class UpdateData extends ScreenTemplate {
 		                            int result6 = JOptionPane.showConfirmDialog(null, panel6, "Enter respective Section Details to update", JOptionPane.OK_CANCEL_OPTION);
 		                            if (result6 == JOptionPane.OK_OPTION) {
 		                                String sectionId = secIdField.getText();
+		                                if (sectionId.isEmpty()) {
+		                                    JOptionPane.showMessageDialog(null, "Section ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+		                                    return;
+		                                }
 		                                JPanel editPanel = new JPanel(new GridLayout(5, 2));
 		                                JTextField sectionNameField = new JTextField(10);
 		                                JTextField semesterField = new JTextField(10);

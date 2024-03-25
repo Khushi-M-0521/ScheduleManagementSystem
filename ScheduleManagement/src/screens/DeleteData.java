@@ -43,7 +43,6 @@ public class DeleteData extends ScreenTemplate {
 	                public void actionPerformed(ActionEvent e) {
 	                    switch (name) {
 	                        case "BLOCK":
-//	                            System.out.println("ADD DATA button clicked");
 	                        	JPanel panel = new JPanel(new GridLayout(1, 2));
 	                            JTextField blockIdField = new JTextField(10);
 	                            panel.add(new JLabel("Block ID:"));
@@ -51,6 +50,10 @@ public class DeleteData extends ScreenTemplate {
 	                            int result = JOptionPane.showConfirmDialog(null, panel, "Enter respective Block_id to delete", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result == JOptionPane.OK_OPTION) {
 	                                String blockId = blockIdField.getText();
+	                                if (blockId.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Block ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return; 
+	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the block with ID: " + blockId, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
 	                                    // Delete block
@@ -66,6 +69,10 @@ public class DeleteData extends ScreenTemplate {
 	                            int result1 = JOptionPane.showConfirmDialog(null, panel1, "Enter respective Classroom_id to delete", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result1 == JOptionPane.OK_OPTION) {
 	                                String classroomId = classroomIdField.getText();
+	                                if (classroomId.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Classroom ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return; 
+	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the classroom with ID: " + classroomId, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
 	                                    // Delete block
@@ -81,6 +88,10 @@ public class DeleteData extends ScreenTemplate {
 		                            int result2 = JOptionPane.showConfirmDialog(null, panel2, "Enter respective Faculty_id to delete", JOptionPane.OK_CANCEL_OPTION);
 		                            if (result2 == JOptionPane.OK_OPTION) {
 		                                String facultyId = FacultyIdField.getText();
+		                                if (facultyId.isEmpty()) {
+		                                    JOptionPane.showMessageDialog(null, "Faculty ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+		                                    return;
+		                                }
 		                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the faculty with ID: " + facultyId, "Confirmation", JOptionPane.YES_NO_OPTION);
 		                                if (confirmResult == JOptionPane.YES_OPTION) {
 		                                    // Delete block
@@ -96,6 +107,10 @@ public class DeleteData extends ScreenTemplate {
 	                            int result3 = JOptionPane.showConfirmDialog(null, panel3, "Enter respective department_id to delete", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result3 == JOptionPane.OK_OPTION) {
 	                                String deptId = deptIdField.getText();
+	                                if (deptId.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Department ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return;
+	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the department with ID: " + deptId, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
 	                                    // Delete block
@@ -112,6 +127,10 @@ public class DeleteData extends ScreenTemplate {
 	                            int result4 = JOptionPane.showConfirmDialog(null, panel4, "Enter respective Subject code to delete", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result4 == JOptionPane.OK_OPTION) {
 	                                String subcode = subcodeField.getText();
+	                                if (subcode.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Subject code cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return;
+	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Subject with ID: " + subcode, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
 	                                    // Delete block
@@ -135,6 +154,10 @@ public class DeleteData extends ScreenTemplate {
 	                                String subcode =subjcodeField.getText();
 	                                String facultyid = facultyyidField.getText();
 	                                String secid=secidField.getText();
+	                                if (subcode.isEmpty()| facultyid.isEmpty()|secid.isEmpty()) {
+	                                    JOptionPane.showMessageDialog(null, "Values cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    return;
+	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the faculty with ID: " + facultyid+"  handling the subject with subject code  "+subcode+"  for the section with Id: "+secid,"Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
 	                                    // Delete block
@@ -150,6 +173,10 @@ public class DeleteData extends ScreenTemplate {
 		                            int result6 = JOptionPane.showConfirmDialog(null, panel6, "Enter respective Section Details to delete", JOptionPane.OK_CANCEL_OPTION);
 		                            if (result6 == JOptionPane.OK_OPTION) {
 		                                String sectionId = secIdField.getText();
+		                                if (sectionId.isEmpty()) {
+		                                    JOptionPane.showMessageDialog(null, "Section Id cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+		                                    return;
+		                                }
 		                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Section with ID: " + sectionId, "Confirmation", JOptionPane.YES_NO_OPTION);
 		                                if (confirmResult == JOptionPane.YES_OPTION) {
 		                                    // Delete block
