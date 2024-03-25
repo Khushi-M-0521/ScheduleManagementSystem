@@ -19,8 +19,8 @@ public class DeleteTT extends ScreenTemplate{
 
 	public DeleteTT() {
 		super("DELETE TIMETABLE");
-		ScreenTemplate screen = new ScreenTemplate("DELETE TIMETABLE");
-		screen.setBounds(0, 0, 400, 200);
+//		ScreenTemplate screen = new ScreenTemplate("DELETE TIMETABLE");
+		this.setBounds(0, 0, 400, 200);
 		myFont font=new myFont(30);
 		JPanel panel = new JPanel(new GridLayout(2, 1));
 
@@ -30,16 +30,18 @@ public class DeleteTT extends ScreenTemplate{
         JTextField sectionIdField = new JTextField(10);
         inputPanel.add(label);
         inputPanel.add(sectionIdField);
-//        this.getContentPane().add(inputPanel);
+        
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
         MyButton deleteButton = new MyButton("Delete Timetable", 0, 0, 130, 35);
-//        JButton deleteButton = new JButton("Delete Timetable");
-//        this.getContentPane().add(buttonPanel);
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String sectionId = sectionIdField.getText();
+                if (sectionId.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Section ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; 
+                }
                 int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the timetable for section ID: " + sectionId + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (confirmResult == JOptionPane.YES_OPTION) {
                     // Call a method to delete the timetable based on the section ID
@@ -53,10 +55,10 @@ public class DeleteTT extends ScreenTemplate{
             }
         });
         buttonPanel.add(deleteButton);
-
      panel.add(inputPanel);
      panel.add(buttonPanel);
      this.add(panel);
+    
         this.setVisible(true);
     }
 	}
