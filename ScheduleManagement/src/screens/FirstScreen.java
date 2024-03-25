@@ -60,6 +60,8 @@ public class FirstScreen extends ScreenTemplate{
                         	break;
                         case "DELETE DATA":
                         	new DeleteData();
+//                        	DeleteData deleteDataScreen = new DeleteData();
+//                            deleteDataScreen.setVisible(true);
                         	break;
                         case "DELETE TIMETABLE":
                         	new DeleteTT();

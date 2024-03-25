@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,19 +21,18 @@ public class UpdateData extends ScreenTemplate {
 
 	public UpdateData() {
 		super("UPDATE DATA");
-		myFont font=new myFont(40);
-		 JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		JLabel label1 = new JLabel("UPDATE DATA");
+		label1.setFont(new myFont(40));
+		label1.setBounds(10, 10, 480, 50);
+		label1.setHorizontalAlignment(JLabel.CENTER);
+		this.getContentPane().add(label1);
 
-	        JPanel labelPanel = new JPanel();
-	        JLabel label1 = new JLabel("UPDATE DATA");
-	        label1.setFont(font);
-	        labelPanel.add(label1); 
-
-	        mainPanel.add(labelPanel);
 	        JPanel buttonPanel = new JPanel(new GridLayout(8, 1, 10, 10));
+	        buttonPanel.setBackground(Color.WHITE);
+	        buttonPanel.setBounds(10,50,470,420);
 	        buttonPanel.setBorder(new EmptyBorder(30, 30, 30, 30));
-	        String[] buttonNames = { "BLOCK", "CLASSROOM", "FACULTY", "DEPARTMENT", "SUBJECT",
+	        this.getContentPane().add(buttonPanel);
+	        String[] buttonNames = { "BLOCK", "CLASSROOM",  "DEPARTMENT","FACULTY", "SUBJECT",
 	                 "SECTION"};
 	        for (String name : buttonNames) {
 	            MyButton button = new MyButton(name, 5, 5, 70, 70);
@@ -260,8 +260,8 @@ public class UpdateData extends ScreenTemplate {
 	            buttonPanel.add(button);
 	        }
 
-	        mainPanel.add(buttonPanel);
-	        this.getContentPane().add(mainPanel);
+//	        mainPanel.add(buttonPanel);
+//	        this.getContentPane().add(mainPanel);
 	        this.setVisible(true);
 	}
 	

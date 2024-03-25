@@ -30,10 +30,12 @@ public class DeleteTT extends ScreenTemplate{
         JTextField sectionIdField = new JTextField(10);
         inputPanel.add(label);
         inputPanel.add(sectionIdField);
+//        this.getContentPane().add(inputPanel);
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
         MyButton deleteButton = new MyButton("Delete Timetable", 0, 0, 130, 35);
 //        JButton deleteButton = new JButton("Delete Timetable");
+//        this.getContentPane().add(buttonPanel);
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,11 +54,10 @@ public class DeleteTT extends ScreenTemplate{
         });
         buttonPanel.add(deleteButton);
 
-        panel.add(inputPanel);
-        panel.add(buttonPanel);
-
-        screen.add(panel);
-        screen.setVisible(true);
+     panel.add(inputPanel);
+     panel.add(buttonPanel);
+     this.add(panel);
+        this.setVisible(true);
     }
 	}
 

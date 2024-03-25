@@ -11,7 +11,7 @@ public class Database {
     static Statement stmt = null;
     static String DB_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
     static String USER = "sys as sysdba";
-    static String PASS = "Khushi0521";
+    static String PASS = "12345678";
     
     public static void createConnection() {
     	try {
@@ -60,7 +60,7 @@ public class Database {
     
     public static int addfaculty(String facultyId, String facultyname,String phonenumber, String facultyemail, String designation,String deptid) {
     	int res=0;
-    	String sql = "INSERT INTO FACULTY VALUES(\'"+facultyId+"\', \'"+facultyname+"\', \'"+phonenumber+"\', \'"+facultyemail+"\', \'"+deptid+"\', \'"+designation+"\')";
+    	String sql = "INSERT INTO FACULTY VALUES(\'"+facultyId+"\', \'"+facultyname+"\', \'"+phonenumber+"\', \'"+facultyemail+"\', \'"+designation+"\', \'"+deptid+"\')";
     	try {
 			res=stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -356,6 +356,7 @@ public class Database {
 			classes=new String[i][7];
 			i=0;
 			rs=stmt.executeQuery(query);
+
 			//rs.beforeFirst();
 			//rs.getBoolean("SUB_CODE");
 			//System.out.println(rs.next());

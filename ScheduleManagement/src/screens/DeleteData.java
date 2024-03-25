@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,27 +21,26 @@ public class DeleteData extends ScreenTemplate {
 
 	public DeleteData() {
 		super("Delete Data");
-		myFont font=new myFont(40);
-		 JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		JLabel label1 = new JLabel("DELETE DATA");
+		label1.setFont(new myFont(40));
+		label1.setBounds(10, 10, 480, 50);
+		label1.setHorizontalAlignment(JLabel.CENTER);
+		this.getContentPane().add(label1);
 
-	        JPanel labelPanel = new JPanel();
-	        JLabel label1 = new JLabel("DELETE DATA");
-	        label1.setFont(font);
-	        labelPanel.add(label1); 
-
-	        mainPanel.add(labelPanel);
 	        JPanel buttonPanel = new JPanel(new GridLayout(8, 1, 10, 10));
+	        buttonPanel.setBackground(Color.WHITE);
+	        buttonPanel.setBounds(10,50,470,420);
 	        buttonPanel.setBorder(new EmptyBorder(30, 30, 30, 30));
-	        String[] buttonNames = { "BLOCK", "CLASSROOM", "FACULTY", "DEPARTMENT", "SUBJECT",
-	                "FACULTY HANDLING THE SUBJECT", "SECTION"};
+	        this.getContentPane().add(buttonPanel);
+	       
+	        String[] buttonNames = { "BLOCK", "CLASSROOM","DEPARTMENT", "FACULTY",  "SUBJECT",
+	        		"SECTION","FACULTY HANDLING THE SUBJECT"};
 	        for (String name : buttonNames) {
 	            MyButton button = new MyButton(name, 5, 5, 70, 70);
 //	            button.setMargin(new Insets(40, 40, 40, 40));
 	            button.addActionListener(new ActionListener() {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
-	                    // Perform action based on the button's name
 	                    switch (name) {
 	                        case "BLOCK":
 //	                            System.out.println("ADD DATA button clicked");
@@ -167,10 +167,11 @@ public class DeleteData extends ScreenTemplate {
 	                }
 	            });
 	            buttonPanel.add(button);
+//	            this.getContentPane().add(buttonPanel);
 	        }
 
-	        mainPanel.add(buttonPanel);
-	        this.getContentPane().add(mainPanel);
+//	        mainPanel.add(buttonPanel);
+//	        this.getContentPane().add(mainPanel);
 	        this.setVisible(true);
 	}
 	}
