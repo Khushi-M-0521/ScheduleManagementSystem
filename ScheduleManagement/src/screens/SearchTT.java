@@ -51,7 +51,8 @@ public class SearchTT extends ScreenTemplate{
         String[] secs=database.Database.sections();
         JLabel sectionLabel = new JLabel("Section:");
         JComboBox sectionComboBox = new JComboBox(secs);
-        sectionComboBox.insertItemAt(null, 0);
+        //sectionComboBox.insertItemAt(null, 0);
+        sectionComboBox.setSelectedIndex(-1);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
@@ -63,6 +64,8 @@ public class SearchTT extends ScreenTemplate{
         String[] fids=database.Database.facultyids();
         JLabel FacultyLabel = new JLabel("FacultyID:");
         JComboBox facultyComboBox = new JComboBox(fids);
+        sectionComboBox.insertItemAt(null, 0);
+        //sectionComboBox.setSelectedIndex(-1);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;
@@ -81,11 +84,11 @@ public class SearchTT extends ScreenTemplate{
                 if(section==null && faculty==null)
                 	JOptionPane.showMessageDialog(null, "Enter either section or faculty", "Invalid", JOptionPane.ERROR_MESSAGE);
                 else if(section==null) {
-                	String res[][]=database.Database.getTT(department, faculty);
+                	String res[][]=database.Database.getTT(faculty);
                 	new ResultTT(res,department,faculty,true);
                 }
                 else if(faculty==null) {
-                	String res[][]=database.Database.getTT(department, section);
+                	String res[][]=database.Database.getSecTT(section);
                 	new ResultTT(res,department,section,false);
                 }
                 else {

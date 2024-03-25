@@ -54,14 +54,21 @@ public class AddData extends ScreenTemplate{
 	                            if (result == JOptionPane.OK_OPTION) {
 	                                String blockId = blockIdField.getText();
 	                                String blockName = blockNameField.getText();
-	                                int res=database.Database.addblock(blockId,blockName);
-	                                if(res!=0) {
-	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
-	                                	dispose();
-	                                }
+	                                if(blockId.isEmpty() || blockName.isEmpty())
+	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
-	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                 	int res=database.Database.addblock(blockId,blockName);
+	                                 	if(res!=-1) {
+	                                 		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                 		//blockIdField.setText("");
+	                                 		//blockNameField.setText("");
+	                                 	}
+	                                 	else {
+	                                 		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                 	}
 	                                }
+	                            
+	                                
 	                            }
 	                            break;
 	                        case "NEW CLASSROOM":
@@ -80,14 +87,21 @@ public class AddData extends ScreenTemplate{
 	                                String classroomId = classroomIdField.getText();
 	                                String hasprojector = HasprojectorField.getText();
 	                                String Blockid=BlockIdField.getText();
-	                                int res=database.Database.addclassroom(classroomId,hasprojector,Blockid);
-	                                if(res!=0) {
-	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
-	                                	dispose();
-	                                }
+	                                if(classroomId.isEmpty() || hasprojector.isEmpty() || Blockid.isEmpty())
+	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
-	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                	int res=database.Database.addclassroom(classroomId,hasprojector,Blockid);
+	                                	if(res!=-1) {
+	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                		//classroomIdField.setText("");
+	                                		//HasprojectorField.setText("");
+	                                		//BlockIdField.setText("");
+	                                	}
+	                                	else {
+	                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                	}
 	                                }
+	                                
 	                            }
 	                        	
 	                            break;
@@ -118,15 +132,25 @@ public class AddData extends ScreenTemplate{
 		                                String facultyemail = emailField.getText();
 		                                String phonenumber = phonenumberField.getText();
 		                                String deptid = depatidField.getText();
-		                                String desigid=desigIdField.getText();
-		                                int res=database.Database.addfaculty(facultyId,facultyname,facultyemail,phonenumber,deptid);
-		                                if(res!=0) {
-		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
-		                                	dispose();
-		                                }
+
+		                                if(facultyId.isEmpty() || facultyname.isEmpty() || facultyemail.isEmpty() || phonenumber.isEmpty() || deptid.isEmpty())
+		                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 		                                else {
-		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                	String designation="associate";
+		                                	int res=database.Database.addfaculty(facultyId,facultyname,phonenumber,facultyemail, designation,deptid);
+		                                	if(res!=-1) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                		//FacultyIdField.setText("");
+		                                		//FacultynameField.setText("");
+		                                		//emailField.setText("");
+		                                		//phonenumberField.setText("");
+		                                		//depatidField.setText("");
+		                                	}
+		                                	else {
+		                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                	}
 		                                }
+		                                
 		                            }
 		                        	
 		                            break;
@@ -142,14 +166,20 @@ public class AddData extends ScreenTemplate{
 	                            if (result3 == JOptionPane.OK_OPTION) {
 	                                String deptId = deptIdField.getText();
 	                                String deptName = deptNameField.getText();
-	                                int res=database.Database.adddepartment(deptId,deptName);
-	                                if(res!=0) {
-	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
-	                                	dispose();
-	                                }
+	                                if(deptId.isEmpty() || deptName.isEmpty())
+	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
-	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                	int res=database.Database.adddepartment(deptId,deptName);
+	                                	if(res!=0) {
+	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                		//deptIdField.setText("");
+	                                		//deptNameField.setText("");
+	                                	}
+	                                	else {
+	                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                	}
 	                                }
+	                                
 	                            }
 	                            	break;
 	                            
@@ -169,14 +199,21 @@ public class AddData extends ScreenTemplate{
 	                                String subcode = subcodeField.getText();
 	                                String subname = subnameField.getText();
 	                                String subabbrevation=subabbField.getText();
-	                                int res=database.Database.addsubject(subcode,subname,subabbrevation);
-	                                if(res!=0) {
-	                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
-	                                	dispose();
-	                                }
+	                                if(subcode.isEmpty() || subname.isEmpty() || subabbrevation.isEmpty())
+	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
-	                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                	int res=database.Database.addsubject(subcode,subname,subabbrevation);
+	                                	if(res!=0) {
+	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                		//subcodeField.setText("");
+	                                		//subnameField.setText("");
+	                                		//subabbField.setText("");
+	                                	}
+	                                	else {
+	                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                	}
 	                                }
+	                                
 	                            }
 	                        	
 	                            break; 
@@ -200,6 +237,20 @@ public class AddData extends ScreenTemplate{
 	                                String facultyid = facultyyidField.getText();
 	                                String secid=secidField.getText();
 	                                String batchname=BatchnameField.getText();
+	                                if(subcode.isEmpty() || facultyid.isEmpty())
+	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                else {
+	                                	int res=database.Database.addhandles(facultyid,subcode,facultyid,subcode);
+	                                	if(res!=0) {
+	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                		//subjcodeField.setText("");
+	                                		//facultyyidField.setText("");
+	                                	}
+	                                	else {
+	                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+	                                	}
+	                                }
+	                                
 	                            }
 	                        	break;
 	                        	
@@ -227,14 +278,23 @@ public class AddData extends ScreenTemplate{
 		                                String sem = semField.getText();
 		                                String academicyear = academicyearField.getText();
 		                                String facultyid = facultyidField.getText();
-		                                int res=database.Database.addsection(sectionId,secname,sem,academicyear ,facultyid);
-		                                if(res!=0) {
-		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
-		                                	dispose();
-		                                }
+		                                if(sectionId.isEmpty() || secname.isEmpty() || sem.isEmpty() || academicyear.isEmpty() || facultyid.isEmpty())
+		                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 		                                else {
-		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                	int res=database.Database.addsection(sectionId,secname,sem,academicyear ,facultyid);
+		                                	if(res!=0) {
+		                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                		//secIdField.setText("");
+		                                		//secField.setText("");
+		                                		//semField.setText("");
+		                                		//academicyearField.setText("");
+		                                		//facultyidField.setText("");
+		                                	}
+		                                	else {
+		                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                	}
 		                                }
+		                                
 		                            }
 	                        	
 	                        	break;
@@ -244,6 +304,34 @@ public class AddData extends ScreenTemplate{
 	                            break;
 	                            
 	                        
+//	                        case "NEW BATCH":
+//	                        	JPanel panel7 = new JPanel(new GridLayout(2, 2));
+//	                            JTextField secidField = new JTextField(10);
+//	                            JTextField BatchnameField = new JTextField(10);
+//	                            panel7.add(new JLabel("Section Id:"));
+//	                            panel7.add(secidField);
+//	                            panel7.add(new JLabel("Batch Name:"));
+//	                            panel7.add(BatchnameField);
+//	                            int result7 = JOptionPane.showConfirmDialog(null, panel7, "Enter Batch Details", JOptionPane.OK_CANCEL_OPTION);
+//	                            if (result7 == JOptionPane.OK_OPTION) {
+//	                                String secId =secidField.getText();
+//	                                String BatchName = BatchnameField.getText();
+//	                                if(secId.isEmpty() || BatchName.isEmpty())
+//	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
+//	                                else {
+//	                                	int res=database.Database.addbatch(secId,BatchName);
+//	                                	if(res!=0) {
+//	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+//	                                		dispose();
+//	                                	}
+//	                                	else {
+//	                                		JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+//	                                	}
+//	                                }
+//	                                
+//	                            }
+//	                            
+//	                        	break;
 	                    }
 	                }
 	            });
