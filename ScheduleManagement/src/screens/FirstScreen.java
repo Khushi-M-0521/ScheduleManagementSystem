@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +21,7 @@ public class FirstScreen extends ScreenTemplate{
 
 	public FirstScreen(String title) {
 		super(title);
+		//this.setDefaultCloseOperation(close());
 		JLabel scheduleLabel = new JLabel("Schedule Management");
 		scheduleLabel.setFont(new myFont(40));
 		scheduleLabel.setBounds(10, 10, 480, 100);
@@ -44,11 +46,11 @@ public class FirstScreen extends ScreenTemplate{
                         	new AddData();
                             break;
                         case "ADD TIMETABLE":
-                        	String depts[]= database.Database.deptIds();
+                        	//String depts[]= database.Database.deptIds();
                         	String secs[]=database.Database.sections();
-                        	String fids[]=database.Database.facultyids();
-                        	String subs[]=database.Database.subjects();
-                        	new AddTT("ADD TIMETABLE",depts,secs,subs,fids);
+                        	//String fids[]=database.Database.facultyids();
+                        	//String subs[]=database.Database.subjects();
+                        	new AddTT("ADD TIMETABLE",secs);
                             break;
                         case "FETCH TIMETABLE":
                         	new SearchTT();
@@ -80,16 +82,20 @@ public class FirstScreen extends ScreenTemplate{
 	}
 
 	public static void main(String[] args) {
+		try {
 		database.Database.createConnection();
-		database.Database.deptIds();
-		database.Database.facultyids();
-		database.Database.sections();
+//		database.Database.deptIds();
+//		database.Database.facultyids();
+//		database.Database.sections();
 		new FirstScreen("Home Screen");
-
+		}catch(Exception e) {
+			System.out.println(e.getStackTrace());
+		}
 	}
 	
 	public void dispose(){
 		database.Database.closeAll();
+		super.dispose();
 	}
 
 }

@@ -195,7 +195,7 @@ public class TTTemplate extends ScreenTemplate{
 		this.getContentPane().add(subs);
 		
 		String th[]={"Subcode","Subject","Faculty_id"};
-		subList=new JTable(11,3);
+		subList=new JTable(15,3);
 		subList.setEnabled(false);
 		subList.setRowHeight(20);
 		subList.setRowHeight(0, 25);

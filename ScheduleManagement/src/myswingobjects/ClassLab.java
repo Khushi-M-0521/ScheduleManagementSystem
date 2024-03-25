@@ -8,17 +8,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import screens.AddTT;
+
 public class ClassLab extends JPanel{
 	JPanel parent;
 	JPanel tt;
-	JFrame TT;
+	AddTT TT;
 	public void setClassPanel() {
-		String subs[]=database.Database.subjects();
-		String fids[]=database.Database.facultyids();
+		String[] classes=database.Database.classHandlers(TT.section);
+//		String subs[]=database.Database.subjects();
+//		String fids[]=database.Database.facultyids();
 		String blks[]=database.Database.blks();
 		String clrs[]=database.Database.clrs();
 		parent.remove(this);
-		parent.add(new ClassPanel(subs,fids,blks,clrs,0,0));
+		parent.add(new ClassPanel(classes,blks,clrs,0,0));
 		tt.add(parent);
 		TT.repaint();
 	}
@@ -34,12 +37,12 @@ public class ClassLab extends JPanel{
 	
 	public void setLabPanel() {
 		parent.remove(this);
-		parent.add(new Lab1(4,0,0));
+		parent.add(new Lab1(0,0,parent,tt,TT));
 		tt.add(parent);
 		TT.repaint();
 	}
 	
-	public ClassLab(int x,int y,JPanel parent,JPanel tt,JFrame TT){
+	public ClassLab(int x,int y,JPanel parent,JPanel tt,AddTT TT,boolean isLab){
 		this.setBounds(x,y,85,63);
 		this.setLayout(null);
 		this.parent=parent;
@@ -59,16 +62,18 @@ public class ClassLab extends JPanel{
 		});
 		this.add(cls);
 		
-		MyButton lab=new MyButton("LAB",5,5+19,75,14);
-		lab.addActionListener(new ActionListener() {
+		if(isLab) {
+			MyButton lab=new MyButton("LAB",5,5+19,75,14);
+			lab.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setLabPanel();
 			}
 			
-		});
-		this.add(lab);
+			});
+			this.add(lab);
+		}
 		
 		MyButton gap=new MyButton("GAP",5,5+24+14,75,14);
 		gap.addActionListener(new ActionListener() {
