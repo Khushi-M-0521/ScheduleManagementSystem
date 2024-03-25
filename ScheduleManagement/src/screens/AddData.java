@@ -134,12 +134,10 @@ public class AddData extends ScreenTemplate{
 		                                String phonenumber = phonenumberField.getText();
 		                                String designation=desigIdField.getText();
 		                                String deptid = depatidField.getText();
-		                                
 
 		                                if(facultyId.isEmpty() || facultyname.isEmpty() || facultyemail.isEmpty() || phonenumber.isEmpty() || deptid.isEmpty())
 		                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 		                                else {
-//		                                	String designation="associate";
 		                                	int res=database.Database.addfaculty(facultyId,facultyname,phonenumber,facultyemail, designation,deptid);
 		                                	if(res!=-1) {
 		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -224,7 +222,9 @@ public class AddData extends ScreenTemplate{
 	                        	JPanel panel5 = new JPanel(new GridLayout(4, 2));
 	                        	String[] subs=database.Database.subjects();
 	                        	String[] fids=database.Database.facultyids();
+
 	                        	String[] secids=database.Database.sections();
+
 	                            JComboBox<String> subjcodeField = new JComboBox<String>(subs);
 	                            JComboBox<String> facultyyidField = new JComboBox<String>(fids);
 	                            JComboBox<String> secidField=new JComboBox<String>(secids);
@@ -239,8 +239,10 @@ public class AddData extends ScreenTemplate{
 	                            panel5.add(BatchnameField);
 	                            int result5 = JOptionPane.showConfirmDialog(null, panel5, "Enter Faculty handling subject Details", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result5 == JOptionPane.OK_OPTION) {
-	                                String subcode =(String)subjcodeField.getSelectedItem();
-	                                String facultyid =(String) facultyyidField.getSelectedItem();
+	                                
+                                  String subcode =(String) subjcodeField.getSelectedItem();
+	                                String facultyid = (String) facultyyidField.getSelectedItem();
+
 	                                String secid=(String) secidField.getSelectedItem();
 	                                String batchname=BatchnameField.getText();
 	                                if(subcode.isEmpty() || facultyid.isEmpty())

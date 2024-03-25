@@ -32,12 +32,12 @@ public class TTTemplate extends ScreenTemplate{
 		this.getContentPane().add(header);
 		
 		JLabel dept=new JLabel("Department : ");
-		dept.setBounds(20,50,100,20);
+		dept.setBounds(240,50,100,20);
 		dept.setFont(new myFont(16));
 		this.getContentPane().add(dept);
 		
 		JLabel sec=new JLabel("Section : ");
-		sec.setBounds(240,50,100,20);
+		sec.setBounds(20,50,60,20);
 		sec.setFont(new myFont(16));
 		this.getContentPane().add(sec);
 		
@@ -195,7 +195,8 @@ public class TTTemplate extends ScreenTemplate{
 		this.getContentPane().add(subs);
 		
 		String th[]={"Subcode","Subject","Faculty_id"};
-		subList=new JTable(11,3);
+		subList=new JTable(15,3);
+		subList.setEnabled(false);
 		subList.setRowHeight(20);
 		subList.setRowHeight(0, 25);
 		for(int i=0;i<3;i++)

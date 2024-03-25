@@ -159,7 +159,7 @@ public class Database {
 			depts=new String[i];
 			i=0;
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
+			//rs.beforeFirst();
 			while(rs.next()) {
 				depts[i]=rs.getString("DEPT_ID");
 				i++;
@@ -179,9 +179,10 @@ public class Database {
 			ResultSet rs=stmt.executeQuery(query);
 			int i=0;
 			while(rs.next()) i++;
-			fids=new String[i];
+			fids=new String[20];
 			i=0;
 			rs=stmt.executeQuery(query);
+			//rs.beforeFirst();
 			while(rs.next()) {
 				fids[i]=rs.getString("FACULTY_ID");
 				System.out.println(fids[i]);
@@ -204,7 +205,7 @@ public class Database {
 			secs=new String[i];
 			i=0;
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
+			//rs.beforeFirst();
 			while(rs.next()) {
 				secs[i]=rs.getString("SEC_ID");
 				System.out.println(secs[i]);
@@ -228,8 +229,8 @@ public class Database {
 			while(rs.next()) i++;
 			subs=new String[i];
 			i=0;
+			//rs.beforeFirst();
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
 			while(rs.next()) {
 				subs[i]=rs.getString("SUB_CODE");
 				System.out.println(subs[i]);
@@ -243,7 +244,7 @@ public class Database {
     }
     
     public static String[] blks() {
-    	String query="SELECT BLOCK_ID  FROM BLOCK ORDER BY BLOCK_ID";
+    	String query="SELECT BLOCK_ID  FROM BLOCKK ORDER BY BLOCK_ID";
     	String[] bks = null;
     	try {
 			ResultSet rs=stmt.executeQuery(query);
@@ -252,7 +253,7 @@ public class Database {
 			bks=new String[i];
 			i=0;
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
+			//rs.beforeFirst();
 			while(rs.next()) {
 				bks[i]=rs.getString("BLOCK_ID");
 				System.out.println(bks[i]);
@@ -275,7 +276,7 @@ public class Database {
 			clr=new String[i];
 			i=0;
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
+			//rs.beforeFirst();
 			while(rs.next()) {
 				clr[i]=rs.getString("CLASSROOM_ID");
 				System.out.println(clr[i]);
@@ -288,25 +289,49 @@ public class Database {
 		}finally {return clr;}
     }
     
-    public static String[][] handlers(String sec) {
-    	String query="SELECT FACULTY_ID, SUBCODE, BATCH_ID "+
+    public static String[] classHandlers(String sec) {
+    	String query="SELECT FACULTY_ID, SUB_CODE "+
     				 "FROM HANDLES "+
-    				 "WHERE SEC_ID= \'"+sec+"\' "+
-    				 "ORDER BY FACULTY_ID, SUBCODE, BATCH_ID";
-    	String hds[][] = null;
+    				 "WHERE SEC_ID= \'"+sec+"\' AND BATCH_ID='ALL' "+
+    				 "ORDER BY FACULTY_ID, SUB_CODE";
+    	String hds[] = null;
     	System.out.println(query);
     	try {
     		ResultSet rs=stmt.executeQuery(query);
     		int i=0;
 			while(rs.next()) i++;
-			hds=new String[i][3];
+			hds=new String[i];
 			i=0;
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
+			//rs.beforeFirst();
     		while(rs.next()) {
-    			hds[i][0]=rs.getString("CLASSROOM_ID");
-    			hds[i][1]=rs.getString("HAS_PROJECTOR");
-    			hds[i][2]=rs.getString("BLOCK_ID");
+    			hds[i]="<html>"+rs.getString("FACULTY_ID")+"<br>"+rs.getString("SUB_CODE")+"</html>";
+    			i++;
+    		}
+    		System.out.println(hds);
+    		
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}finally {return hds;}
+    }
+    
+    public static String[] labHandlers(String sec) {
+    	String query="SELECT FACULTY_ID, SUB_CODE, BATCH_ID "+
+    				 "FROM HANDLES "+
+    				 "WHERE SEC_ID= \'"+sec+"\' AND BATCH_ID<>'ALL' "+
+    				 "ORDER BY FACULTY_ID, SUB_CODE, BATCH_ID";
+    	String hds[] = null;
+    	System.out.println(query);
+    	try {
+    		ResultSet rs=stmt.executeQuery(query);
+    		int i=0;
+			while(rs.next()) i++;
+			hds=new String[i];
+			i=0;
+			rs=stmt.executeQuery(query);
+			//rs.beforeFirst();
+    		while(rs.next()) {
+    			hds[i]="<html>"+rs.getString("FACULTY_ID")+", "+rs.getString("BATCH_ID")+"<br>"+rs.getString("SUB_CODE")+"</html>";
     			i++;
     		}
     		System.out.println(hds);
@@ -331,9 +356,10 @@ public class Database {
 			classes=new String[i][7];
 			i=0;
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
+
+			//rs.beforeFirst();
 			//rs.getBoolean("SUB_CODE");
-			System.out.println(rs.next());
+			//System.out.println(rs.next());
 			while(rs.next()) {
 				classes[i][0]=rs.getString("SUB_CODE");
 				classes[i][1]=rs.getString("SEC_ID");
@@ -341,8 +367,7 @@ public class Database {
 				classes[i][3]=rs.getString("BLOCK_ID");
 				classes[i][4]=rs.getString("DAYY");
 				classes[i][5]=rs.getString("TIMEE");
-				classes[i][6]=rs.getString("DURATION");
-				i++;
+				classes[i][6]=rs.getString("DURATIONN");
 				System.out.println(classes[i][0]);
 				System.out.println(classes[i][1]);
 				System.out.println(classes[i][2]);
@@ -350,7 +375,7 @@ public class Database {
 				System.out.println(classes[i][4]);
 				System.out.println(classes[i][5]);
 				System.out.println(classes[i][6]);
-				
+				i++;
 			}
 			System.out.println(classes);
 			
@@ -371,7 +396,7 @@ public class Database {
 		classes=new String[i][7];
 		i=0;
 		rs=stmt.executeQuery(query);
-//		rs.beforeFirst();
+		//rs.beforeFirst();
 		while(rs.next()) {
 			classes[i][0]=rs.getString("SUB_CODE");
 			classes[i][1]=rs.getString("FACULTY_ID");
@@ -409,7 +434,7 @@ public class Database {
 			classr=new String[i][3];
 			i=0;
 			rs=stmt.executeQuery(query);
-//			rs.beforeFirst();
+			//rs.beforeFirst();
     		while(rs.next()) {
     			classr[i][0]=rs.getString("CLASSROOM_ID");
     			classr[i][1]=rs.getString("HAS_PROJECTOR");
@@ -444,7 +469,7 @@ public class Database {
     	String query="SELECT D.DEPT_NAME "+
 				 	 "FROM FACULTY F, DEPARTMENT D , SECTION S "+
 				 	 "WHERE F.DEPT_ID=D.DEPT_ID "+
-				 	 "AND F.FACULTY_ID= S.FACULTY_ID"+
+				 	 "AND F.FACULTY_ID= S.FACULTY_ID "+
 				 	 "AND S.SEC_ID=\'"+sec_id+"\' ";
     	String dept=null;
     	try {
@@ -467,7 +492,7 @@ public class Database {
 	try {
 		ResultSet rs=stmt.executeQuery(query);
 		if(rs.next()) {
-			fname=rs.getString("DEPT_NAME");
+			fname=rs.getString("FACULTY_NAME");
 		}
 		System.out.println(fname);
 	}catch (SQLException e) {
@@ -476,9 +501,11 @@ public class Database {
     }
     
     public static String[][] subjAndHandlers(String sec_id){
-    	String query="SELECT S.SUB_CODE, S.SUB_ABBREVATION, S.SUB_NAME, H.FACULTY_ID"+
+    	String query="SELECT S.SUB_CODE, S.SUB_ABBREVATION, S.SUB_NAME, LISTAGG(H.FACULTY_ID, ', ') AS FACULTY_IDS "+
 					" FROM HANDLES H, SUBJECT S"+
-					" WHERE SEC_ID=\'"+sec_id+"\'";
+					" WHERE H.SUB_CODE=S.SUB_CODE"+
+					" AND H.SEC_ID=\'"+sec_id+"\'"+
+					" GROUP BY S.SUB_CODE, S.SUB_ABBREVATION, S.SUB_NAME ORDER BY S.SUB_CODE";
 	String classr[][] = null;
 	System.out.println(query);
 	try {
@@ -486,15 +513,17 @@ public class Database {
 		int i=0;
 		while(rs.next()) i++;
 		classr=new String[i][4];
+		System.out.println(i);
 		i=0;
 		rs=stmt.executeQuery(query);
-//		rs.beforeFirst();
+		//rs.beforeFirst();
 		while(rs.next()) {
 			classr[i][0]=rs.getString("SUB_CODE");
 			classr[i][1]=rs.getString("SUB_ABBREVATION");
 			classr[i][2]=rs.getString("SUB_NAME");
-			classr[i][2]=rs.getString("FACULTY_ID");
+			classr[i][3]=rs.getString("FACULTY_IDS");
 			i++;
+			System.out.println(i);
 		}
 		System.out.println(classr);
 		
