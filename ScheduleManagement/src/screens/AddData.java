@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -34,8 +35,8 @@ public class AddData extends ScreenTemplate{
 	        buttonPanel.setBounds(10,50,470,420);
 	        buttonPanel.setBorder(new EmptyBorder(30, 30, 30, 30));
 	        this.getContentPane().add(buttonPanel);
-	        String[] buttonNames = { "NEW BLOCK", "NEW CLASSROOM", "NEW FACULTY", "NEW DEPARTMENT", "NEW SUBJECT",
-	                "NEW FACULTY HANDLING THE SUBJECT", "NEW SECTION" };
+	        String[] buttonNames = { "NEW BLOCK", "NEW CLASSROOM","NEW DEPARTMENT","NEW FACULTY", "NEW SUBJECT",
+	        		"NEW SECTION","NEW FACULTY HANDLING THE SUBJECT" };
 	        for (String name : buttonNames) {
 	            MyButton button = new MyButton(name, 5, 5, 70, 70);
 	            button.addActionListener(new ActionListener() {
@@ -106,7 +107,7 @@ public class AddData extends ScreenTemplate{
 	                        	
 	                            break;
 	                        case "NEW FACULTY":
-	                        	JPanel panel2=new JPanel(new GridLayout(5,2));
+	                        	JPanel panel2=new JPanel(new GridLayout(6,2));
 	                        	JTextField FacultyIdField = new JTextField(10);
 	                        	JTextField FacultynameField = new JTextField(10);
 	                        	JTextField emailField = new JTextField(10);
@@ -131,12 +132,14 @@ public class AddData extends ScreenTemplate{
 		                                String facultyname = FacultynameField.getText();
 		                                String facultyemail = emailField.getText();
 		                                String phonenumber = phonenumberField.getText();
+		                                String designation=desigIdField.getText();
 		                                String deptid = depatidField.getText();
+		                                
 
 		                                if(facultyId.isEmpty() || facultyname.isEmpty() || facultyemail.isEmpty() || phonenumber.isEmpty() || deptid.isEmpty())
 		                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 		                                else {
-		                                	String designation="associate";
+//		                                	String designation="associate";
 		                                	int res=database.Database.addfaculty(facultyId,facultyname,phonenumber,facultyemail, designation,deptid);
 		                                	if(res!=-1) {
 		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -170,7 +173,7 @@ public class AddData extends ScreenTemplate{
 	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
 	                                	int res=database.Database.adddepartment(deptId,deptName);
-	                                	if(res!=0) {
+	                                	if(res!=-1) {
 	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
 	                                		//deptIdField.setText("");
 	                                		//deptNameField.setText("");
@@ -203,7 +206,7 @@ public class AddData extends ScreenTemplate{
 	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
 	                                	int res=database.Database.addsubject(subcode,subname,subabbrevation);
-	                                	if(res!=0) {
+	                                	if(res!=-1) {
 	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
 	                                		//subcodeField.setText("");
 	                                		//subnameField.setText("");
@@ -219,9 +222,12 @@ public class AddData extends ScreenTemplate{
 	                            break; 
 	                        case "NEW FACULTY HANDLING THE SUBJECT":
 	                        	JPanel panel5 = new JPanel(new GridLayout(4, 2));
-	                            JTextField subjcodeField = new JTextField(10);
-	                            JTextField facultyyidField = new JTextField(10);
-	                            JTextField secidField=new JTextField(10);
+	                        	String[] subs=database.Database.subjects();
+	                        	String[] fids=database.Database.facultyids();
+	                        	String[] secids=database.Database.sections();
+	                            JComboBox<String> subjcodeField = new JComboBox<String>(subs);
+	                            JComboBox<String> facultyyidField = new JComboBox<String>(fids);
+	                            JComboBox<String> secidField=new JComboBox<String>(secids);
 	                            JTextField BatchnameField=new JTextField(10);
 	                            panel5.add(new JLabel("Subject Code:"));
 	                            panel5.add(subjcodeField);
@@ -233,15 +239,15 @@ public class AddData extends ScreenTemplate{
 	                            panel5.add(BatchnameField);
 	                            int result5 = JOptionPane.showConfirmDialog(null, panel5, "Enter Faculty handling subject Details", JOptionPane.OK_CANCEL_OPTION);
 	                            if (result5 == JOptionPane.OK_OPTION) {
-	                                String subcode =subjcodeField.getText();
-	                                String facultyid = facultyyidField.getText();
-	                                String secid=secidField.getText();
+	                                String subcode =(String)subjcodeField.getSelectedItem();
+	                                String facultyid =(String) facultyyidField.getSelectedItem();
+	                                String secid=(String) secidField.getSelectedItem();
 	                                String batchname=BatchnameField.getText();
 	                                if(subcode.isEmpty() || facultyid.isEmpty())
 	                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 	                                else {
-	                                	int res=database.Database.addhandles(facultyid,subcode,facultyid,subcode);
-	                                	if(res!=0) {
+	                                	int res=database.Database.addhandles(subcode,facultyid,secid,batchname);
+	                                	if(res!=-1) {
 	                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
 	                                		//subjcodeField.setText("");
 	                                		//facultyyidField.setText("");
@@ -282,7 +288,7 @@ public class AddData extends ScreenTemplate{
 		                                	JOptionPane.showMessageDialog(null, "Missing one or more values", "Failed", JOptionPane.ERROR_MESSAGE);
 		                                else {
 		                                	int res=database.Database.addsection(sectionId,secname,sem,academicyear ,facultyid);
-		                                	if(res!=0) {
+		                                	if(res!=-1) {
 		                                		JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
 		                                		//secIdField.setText("");
 		                                		//secField.setText("");

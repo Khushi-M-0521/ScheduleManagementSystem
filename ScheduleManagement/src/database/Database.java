@@ -11,7 +11,7 @@ public class Database {
     static Statement stmt = null;
     static String DB_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
     static String USER = "sys as sysdba";
-    static String PASS = "Khushi0521";
+    static String PASS = "12345678";
     
     public static void createConnection() {
     	try {
@@ -60,7 +60,7 @@ public class Database {
     
     public static int addfaculty(String facultyId, String facultyname,String phonenumber, String facultyemail, String designation,String deptid) {
     	int res=0;
-    	String sql = "INSERT INTO FACULTY VALUES(\'"+facultyId+"\', \'"+facultyname+"\', \'"+phonenumber+"\', \'"+facultyemail+"\', \'"+deptid+"\')";
+    	String sql = "INSERT INTO FACULTY VALUES(\'"+facultyId+"\', \'"+facultyname+"\', \'"+phonenumber+"\', \'"+facultyemail+"\', \'"+designation+"\', \'"+deptid+"\')";
     	try {
 			res=stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -158,7 +158,8 @@ public class Database {
 			while(rs.next()) i++;
 			depts=new String[i];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
 			while(rs.next()) {
 				depts[i]=rs.getString("DEPT_ID");
 				i++;
@@ -180,7 +181,7 @@ public class Database {
 			while(rs.next()) i++;
 			fids=new String[i];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
 			while(rs.next()) {
 				fids[i]=rs.getString("FACULTY_ID");
 				System.out.println(fids[i]);
@@ -202,7 +203,8 @@ public class Database {
 			while(rs.next()) i++;
 			secs=new String[i];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
 			while(rs.next()) {
 				secs[i]=rs.getString("SEC_ID");
 				System.out.println(secs[i]);
@@ -226,7 +228,8 @@ public class Database {
 			while(rs.next()) i++;
 			subs=new String[i];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
 			while(rs.next()) {
 				subs[i]=rs.getString("SUB_CODE");
 				System.out.println(subs[i]);
@@ -248,7 +251,8 @@ public class Database {
 			while(rs.next()) i++;
 			bks=new String[i];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
 			while(rs.next()) {
 				bks[i]=rs.getString("BLOCK_ID");
 				System.out.println(bks[i]);
@@ -270,7 +274,8 @@ public class Database {
 			while(rs.next()) i++;
 			clr=new String[i];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
 			while(rs.next()) {
 				clr[i]=rs.getString("CLASSROOM_ID");
 				System.out.println(clr[i]);
@@ -296,7 +301,8 @@ public class Database {
 			while(rs.next()) i++;
 			hds=new String[i][3];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
     		while(rs.next()) {
     			hds[i][0]=rs.getString("CLASSROOM_ID");
     			hds[i][1]=rs.getString("HAS_PROJECTOR");
@@ -324,7 +330,8 @@ public class Database {
 			while(rs.next()) i++;
 			classes=new String[i][7];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
 			//rs.getBoolean("SUB_CODE");
 			System.out.println(rs.next());
 			while(rs.next()) {
@@ -363,7 +370,8 @@ public class Database {
 		while(rs.next()) i++;
 		classes=new String[i][7];
 		i=0;
-		rs.beforeFirst();
+		rs=stmt.executeQuery(query);
+//		rs.beforeFirst();
 		while(rs.next()) {
 			classes[i][0]=rs.getString("SUB_CODE");
 			classes[i][1]=rs.getString("FACULTY_ID");
@@ -400,7 +408,8 @@ public class Database {
 			while(rs.next()) i++;
 			classr=new String[i][3];
 			i=0;
-			rs.beforeFirst();
+			rs=stmt.executeQuery(query);
+//			rs.beforeFirst();
     		while(rs.next()) {
     			classr[i][0]=rs.getString("CLASSROOM_ID");
     			classr[i][1]=rs.getString("HAS_PROJECTOR");
@@ -478,7 +487,8 @@ public class Database {
 		while(rs.next()) i++;
 		classr=new String[i][4];
 		i=0;
-		rs.beforeFirst();
+		rs=stmt.executeQuery(query);
+//		rs.beforeFirst();
 		while(rs.next()) {
 			classr[i][0]=rs.getString("SUB_CODE");
 			classr[i][1]=rs.getString("SUB_ABBREVATION");
