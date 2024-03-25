@@ -56,7 +56,13 @@ public class DeleteData extends ScreenTemplate {
 	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the block with ID: " + blockId, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
-	                                    // Delete block
+		                                int res=database.Database.delBlk(blockId);
+		                                if(res!=-1) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 	                                }
 //	                                
 	                            }
@@ -75,7 +81,13 @@ public class DeleteData extends ScreenTemplate {
 	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the classroom with ID: " + classroomId, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
-	                                    // Delete block
+	                                	int res=database.Database.delClassr(classroomId);
+		                                if(res!=-1) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 	                                }
 	                            }
 	                        	
@@ -94,7 +106,13 @@ public class DeleteData extends ScreenTemplate {
 		                                }
 		                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the faculty with ID: " + facultyId, "Confirmation", JOptionPane.YES_NO_OPTION);
 		                                if (confirmResult == JOptionPane.YES_OPTION) {
-		                                    // Delete block
+		                                	int res=database.Database.delFaculty(facultyId);
+			                                if(res!=-1) {
+			                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+			                                }
+			                                else {
+			                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+			                                }
 		                                }
 		                            }
 		                        	
@@ -113,7 +131,13 @@ public class DeleteData extends ScreenTemplate {
 	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the department with ID: " + deptId, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
-	                                    // Delete block
+	                                	int res=database.Database.delDept(deptId);
+		                                if(res!=-1) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 	                                }
 	                                
 	                            }
@@ -133,7 +157,13 @@ public class DeleteData extends ScreenTemplate {
 	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Subject with ID: " + subcode, "Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
-	                                    // Delete block
+	                                	int res=database.Database.delSub(subcode);
+		                                if(res!=-1) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 	                                }
 	                            }
 	                        	
@@ -154,13 +184,19 @@ public class DeleteData extends ScreenTemplate {
 	                                String subcode =subjcodeField.getText();
 	                                String facultyid = facultyyidField.getText();
 	                                String secid=secidField.getText();
-	                                if (subcode.isEmpty()| facultyid.isEmpty()|secid.isEmpty()) {
+	                                if (subcode.isEmpty()||facultyid.isEmpty()||secid.isEmpty()) {
 	                                    JOptionPane.showMessageDialog(null, "Values cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
 	                                    return;
 	                                }
 	                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the faculty with ID: " + facultyid+"  handling the subject with subject code  "+subcode+"  for the section with Id: "+secid,"Confirmation", JOptionPane.YES_NO_OPTION);
 	                                if (confirmResult == JOptionPane.YES_OPTION) {
-	                                    // Delete block
+	                                	int res=database.Database.delHandler(facultyid, secid, subcode);
+		                                if(res!=-1) {
+		                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                }
+		                                else {
+		                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+		                                }
 	                                }
 	                            }
 	                        	break;
@@ -179,7 +215,13 @@ public class DeleteData extends ScreenTemplate {
 		                                }
 		                                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Section with ID: " + sectionId, "Confirmation", JOptionPane.YES_NO_OPTION);
 		                                if (confirmResult == JOptionPane.YES_OPTION) {
-		                                    // Delete block
+		                                	int res=database.Database.delSec(sectionId);
+			                                if(res!=-1) {
+			                                	JOptionPane.showMessageDialog(null, "Inserted", "Success", JOptionPane.INFORMATION_MESSAGE);
+			                                }
+			                                else {
+			                                	JOptionPane.showMessageDialog(null, "error in value", "Failed", JOptionPane.ERROR_MESSAGE);
+			                                }
 		                                }
 		                            }
 	                        	

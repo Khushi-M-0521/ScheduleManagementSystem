@@ -60,7 +60,7 @@ public class Database {
     
     public static int addfaculty(String facultyId, String facultyname,String phonenumber, String facultyemail, String designation,String deptid) {
     	int res=0;
-    	String sql = "INSERT INTO FACULTY VALUES(\'"+facultyId+"\', \'"+facultyname+"\', \'"+phonenumber+"\', \'"+facultyemail+"\', \'"+designation+"\', \'"+deptid+"\')";
+    	String sql = "INSERT INTO FACULTY VALUES(\'"+facultyId+"\', \'"+facultyname+"\', \'"+phonenumber+"\', \'"+facultyemail+"\', \'"+deptid+"\', \'"+designation+"\')";
     	try {
 			res=stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -711,8 +711,8 @@ public class Database {
     	try {
 			ResultSet rs=stmt.executeQuery(query);
 			if(rs.next()) {
-				sub[0]=rs.getString("DEPT_NAME");
-				sub[1]=rs.getString("DEPT_ABBREVATION");
+				sub[0]=rs.getString("SUB_NAME");
+				sub[1]=rs.getString("SUB_ABBREVATION");
 			}
 			System.out.println(sub);
 			
@@ -762,7 +762,7 @@ public class Database {
     
     public static int upFaculty(String f_id, String[] f) {
     	String sql="UPDATE FACULTY "+
-    				"SET FACULTY_NAME=\'"+f[0]+"\', PH_NO=\'"+f[1]+"\', EMAIL=\'"+f[2]+"\', DESIGNATION=\'"+f[3]+"\', DEPT_ID=\'"+f[4]+
+    				"SET FACULTY_NAME=\'"+f[0]+"\', PH_NO=\'"+f[1]+"\', EMAIL=\'"+f[2]+"\', DESIGNATION=\'"+f[3]+"\', DEPT_ID=\'"+f[4]+"\' "+
     				"WHERE FACULTY_ID=\'"+f_id+"\'";
     	int res=0;
     	try {
@@ -788,7 +788,7 @@ public class Database {
     
     public static int upSub(String subcode, String[] sub) {
     	String sql="UPDATE SUBJECT "+
-    				"SET SUB_NAME=\'"+sub[0]+"\', SUB_ABBREVATION=\'"+sub[1]+
+    				"SET SUB_NAME=\'"+sub[0]+"\', SUB_ABBREVATION=\'"+sub[1]+"\' "+
     				"WHERE SUB_CODE=\'"+subcode+"\'";
     	int res=0;
     	try {

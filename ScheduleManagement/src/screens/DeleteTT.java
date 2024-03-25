@@ -20,16 +20,25 @@ public class DeleteTT extends ScreenTemplate{
 	public DeleteTT() {
 		super("DELETE TIMETABLE");
 //		ScreenTemplate screen = new ScreenTemplate("DELETE TIMETABLE");
-		this.setBounds(0, 0, 400, 200);
+		this.setSize(410, 240);
+		this.setLocationRelativeTo(null);
 		myFont font=new myFont(30);
-		JPanel panel = new JPanel(new GridLayout(2, 1));
+		JPanel panel = new JPanel(new GridLayout(3, 1,10,10));
+		panel.setBounds(0,0,400,200);
+		this.add(panel);
+		
+		JLabel head = new JLabel("DELETE TIMETABLE");
+        head.setFont(font);
+        head.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(head);
 
         JPanel inputPanel = new JPanel(new FlowLayout());
         JLabel label = new JLabel("Enter Section ID:");
-        label.setFont(font);
+        label.setFont(new myFont());
         JTextField sectionIdField = new JTextField(10);
         inputPanel.add(label);
         inputPanel.add(sectionIdField);
+        panel.add(inputPanel);
         
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -44,9 +53,8 @@ public class DeleteTT extends ScreenTemplate{
                 }
                 int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the timetable for section ID: " + sectionId + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (confirmResult == JOptionPane.YES_OPTION) {
-                    // Call a method to delete the timetable based on the section ID
-                    int result = 1; // Assuming deletion is successful
-                    if (result != 0) {
+                    int result=database.Database.delTT(sectionId);
+                    if (result != -1) {
                         JOptionPane.showMessageDialog(null, "Timetable deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Failed to delete timetable", "Error", JOptionPane.ERROR_MESSAGE);
@@ -55,12 +63,12 @@ public class DeleteTT extends ScreenTemplate{
             }
         });
         buttonPanel.add(deleteButton);
-     panel.add(inputPanel);
+     
      panel.add(buttonPanel);
-     this.add(panel);
+     
     
         this.setVisible(true);
     }
-	}
+}
 
 

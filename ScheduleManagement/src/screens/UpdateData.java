@@ -57,19 +57,19 @@ public class UpdateData extends ScreenTemplate {
 	                                }
 	                                JPanel editPanel = new JPanel(new GridLayout(2, 2));
 	                                JTextField blockNameField = new JTextField(10);
-	                                // Populate other fields with the retrieved details
+	                                blockNameField.setText(database.Database.getBlk(blockId)[0]);
 	                                editPanel.add(new JLabel("Block Name:"));
 	                                editPanel.add(blockNameField);
 	                                int editResult = JOptionPane.showConfirmDialog(null, editPanel, "Edit Block Details", JOptionPane.OK_CANCEL_OPTION);
 	                                if (editResult == JOptionPane.OK_OPTION) {
-	                                    String updatedBlockName = blockNameField.getText();
+	                                    String[] updatedBlock = {blockNameField.getText()};
 //	                                     Update the block details in the database
-//	                                    int updateResult = database.Database.updateBlock(blockId, updatedBlockName);
-//	                                    if (updateResult != 0) {
-//	                                        JOptionPane.showMessageDialog(null, "Block details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-//	                                    } else {
-//	                                        JOptionPane.showMessageDialog(null, "Failed to update block details", "Error", JOptionPane.ERROR_MESSAGE);
-//	                                    }
+	                                    int updateResult = database.Database.upBlk(blockId, updatedBlock);
+	                                    if (updateResult != -1) {
+	                                        JOptionPane.showMessageDialog(null, "Block details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                    } else {
+	                                        JOptionPane.showMessageDialog(null, "Failed to update block details", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    }
 	                                }
 	                                
 //	                                
@@ -87,9 +87,12 @@ public class UpdateData extends ScreenTemplate {
 	                                    JOptionPane.showMessageDialog(null, "Classroom ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
 	                                    return;
 	                                }
+	                                String[] classrd=database.Database.getClassr(classroomId);
 	                                JPanel editPanel = new JPanel(new GridLayout(3, 2));
 	                                JTextField hasProjectorField = new JTextField(10);
+	                                hasProjectorField.setText(classrd[0]);
 	                                JTextField blockIddField = new JTextField(10);
+	                                blockIddField.setText(classrd[1]);
 	                                editPanel.add(new JLabel("Has Projector:"));
 	                                editPanel.add(hasProjectorField);
 	                                editPanel.add(new JLabel("Block ID:"));
@@ -99,12 +102,13 @@ public class UpdateData extends ScreenTemplate {
 	                                    String updatedHasProjector = hasProjectorField.getText();
 	                                    String updatedBlockId = blockIddField.getText();
 	                                    // Update the classroom details in the database
-//	                                    int updateResult = database.Database.updateClassroom(classroomId, updatedHasProjector, updatedBlockId);
-//	                                    if (updateResult != 0) {
-//	                                        JOptionPane.showMessageDialog(null, "Classroom details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-//	                                    } else {
-//	                                        JOptionPane.showMessageDialog(null, "Failed to update classroom details", "Error", JOptionPane.ERROR_MESSAGE);
-//	                                    }
+	                                    String[] data= {updatedHasProjector,updatedBlockId};
+	                                    int updateResult = database.Database.upClassr(classroomId, data);
+	                                    if (updateResult != -1) {
+	                                        JOptionPane.showMessageDialog(null, "Classroom details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                    } else {
+	                                        JOptionPane.showMessageDialog(null, "Failed to update classroom details", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    }
 	                                }
 	                            }
 	                        	
@@ -121,12 +125,18 @@ public class UpdateData extends ScreenTemplate {
 		                                    JOptionPane.showMessageDialog(null, "Faculty ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
 		                                    return;
 		                                }
+		                                String fd[]=database.Database.getFaculty(facultyId);
 		                                JPanel editPanel = new JPanel(new GridLayout(5, 2));
 		                                JTextField facultyNameField = new JTextField(10);
+		                                facultyNameField.setText(fd[0]);
 		                                JTextField emailField = new JTextField(10);
+		                                emailField.setText(fd[2]);
 		                                JTextField phoneNumberField = new JTextField(10);
+		                                phoneNumberField.setText(fd[1]);
 		                                JTextField departmentIdField = new JTextField(10);
+		                                departmentIdField.setText(fd[4]);
 		                                JTextField designationField=new JTextField(10);
+		                                designationField.setText(fd[3]);
 		                                // Populate other fields with the retrieved details
 		                                editPanel.add(new JLabel("Faculty Name:"));
 		                                editPanel.add(facultyNameField);
@@ -147,12 +157,13 @@ public class UpdateData extends ScreenTemplate {
 		                                    String updatedDepartmentId = departmentIdField.getText();
 		                                    String updatedDesignation=designationField.getText();
 		                                    // Update the faculty details in the database
-//		                                    int updateResult = database.Database.updateFaculty(facultyId, updatedFacultyName, updatedEmail, updatedPhoneNumber, updatedDepartmentId);
-//		                                    if (updateResult != 0) {
-//		                                        JOptionPane.showMessageDialog(null, "Faculty details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-//		                                    } else {
-//		                                        JOptionPane.showMessageDialog(null, "Failed to update faculty details", "Error", JOptionPane.ERROR_MESSAGE);
-//		                                    }
+		                                    String[] data= {updatedFacultyName,updatedPhoneNumber,updatedEmail,updatedDesignation,updatedDepartmentId};
+		                                    int updateResult = database.Database.upFaculty(facultyId, data);
+		                                    if (updateResult != -1) {
+		                                        JOptionPane.showMessageDialog(null, "Faculty details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                    } else {
+		                                        JOptionPane.showMessageDialog(null, "Failed to update faculty details", "Error", JOptionPane.ERROR_MESSAGE);
+		                                    }
 		                                }
 		                            }
 		                        	
@@ -171,19 +182,20 @@ public class UpdateData extends ScreenTemplate {
 	                                }
 	                                JPanel editPanel = new JPanel(new GridLayout(1, 2));
 	                                JTextField departmentNameField = new JTextField(10);
-	                                // Populate other fields with the retrieved details
+	                                departmentNameField.setText(database.Database.getDept(deptId)[0]);
 	                                editPanel.add(new JLabel("Department Name:"));
 	                                editPanel.add(departmentNameField);
 	                                int editResult = JOptionPane.showConfirmDialog(null, editPanel, "Edit Department Details", JOptionPane.OK_CANCEL_OPTION);
 	                                if (editResult == JOptionPane.OK_OPTION) {
 	                                    String updatedDepartmentName = departmentNameField.getText();
 	                                    // Update the department details in the database
-//	                                    int updateResult = database.Database.updateDepartment(deptId, updatedDepartmentName);
-//	                                    if (updateResult != 0) {
-//	                                        JOptionPane.showMessageDialog(null, "Department details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-//	                                    } else {
-//	                                        JOptionPane.showMessageDialog(null, "Failed to update department details", "Error", JOptionPane.ERROR_MESSAGE);
-//	                                    }
+	                                    String[] data= {updatedDepartmentName};
+	                                    int updateResult = database.Database.upDept(deptId, data);
+	                                    if (updateResult != -1) {
+	                                        JOptionPane.showMessageDialog(null, "Department details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                    } else {
+	                                        JOptionPane.showMessageDialog(null, "Failed to update department details", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    }
 	                                }
 	                                
 	                            }
@@ -201,26 +213,28 @@ public class UpdateData extends ScreenTemplate {
 	                                    JOptionPane.showMessageDialog(null, "Subject Code cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
 	                                    return;
 	                                }
-	                                JPanel editPanel = new JPanel(new GridLayout(1, 2));
+	                                String subd[]=database.Database.getSub(subcode);
+	                                JPanel editPanel = new JPanel(new GridLayout(2, 2));
 	                                JTextField subjectNameField = new JTextField(10);
+	                                subjectNameField.setText(subd[0]);
+	                                System.out.println(subd[0]+" "+subd[1]);
 	                                JTextField subjectAbbreviationField = new JTextField(10);
-	                                // Populate other fields with the retrieved details
+	                                subjectAbbreviationField.setText(subd[1]);
 	                                editPanel.add(new JLabel("Subject Name:"));
 	                                editPanel.add(subjectNameField);
 	                                editPanel.add(new JLabel("Subject Abbreviation:"));
 	                                editPanel.add(subjectAbbreviationField);
-	                                // Add other fields to the editPanel
 	                                int editResult = JOptionPane.showConfirmDialog(null, editPanel, "Edit Subject Details", JOptionPane.OK_CANCEL_OPTION);
 	                                if (editResult == JOptionPane.OK_OPTION) {
 	                                    String updatedSubjectName = subjectNameField.getText();
 	                                    String updatedSubjectAbbreviation = subjectAbbreviationField.getText();
-	                                    // Update the subject details in the database
-//	                                    int updateResult = database.Database.updateSubject(subcode, updatedSubjectName, updatedSubjectAbbreviation);
-//	                                    if (updateResult != 0) {
-//	                                        JOptionPane.showMessageDialog(null, "Subject details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-//	                                    } else {
-//	                                        JOptionPane.showMessageDialog(null, "Failed to update subject details", "Error", JOptionPane.ERROR_MESSAGE);
-//	                                    }
+	                                    String[] data= {updatedSubjectName,updatedSubjectAbbreviation};
+	                                    int updateResult = database.Database.upSub(subcode, data);
+	                                    if (updateResult != -1) {
+	                                        JOptionPane.showMessageDialog(null, "Subject details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+	                                    } else {
+	                                        JOptionPane.showMessageDialog(null, "Failed to update subject details", "Error", JOptionPane.ERROR_MESSAGE);
+	                                    }
 	                                }
 	                            }
 	                        	
@@ -239,12 +253,16 @@ public class UpdateData extends ScreenTemplate {
 		                                    JOptionPane.showMessageDialog(null, "Section ID cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
 		                                    return;
 		                                }
+		                                String secd[]=database.Database.getSec(sectionId);
 		                                JPanel editPanel = new JPanel(new GridLayout(5, 2));
 		                                JTextField sectionNameField = new JTextField(10);
+		                                sectionNameField.setText(secd[0]);
 		                                JTextField semesterField = new JTextField(10);
+		                                semesterField.setText(secd[1]);
 		                                JTextField academicYearField = new JTextField(10);
+		                                academicYearField.setText(secd[2]);
 		                                JTextField facultyIdField = new JTextField(10);
-		                                // Populate other fields with the retrieved details
+		                                facultyIdField.setText(secd[3]);
 		                                editPanel.add(new JLabel("Section Name:"));
 		                                editPanel.add(sectionNameField);
 		                                editPanel.add(new JLabel("Semester:"));
@@ -261,12 +279,13 @@ public class UpdateData extends ScreenTemplate {
 		                                    String updatedAcademicYear = academicYearField.getText();
 		                                    String updatedFacultyId = facultyIdField.getText();
 		                                    // Update the section details in the database
-//		                                    int updateResult = database.Database.updateSection(sectionId, updatedSectionName, updatedSemester, updatedAcademicYear, updatedFacultyId);
-//		                                    if (updateResult != 0) {
-//		                                        JOptionPane.showMessageDialog(null, "Section details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-//		                                    } else {
-//		                                        JOptionPane.showMessageDialog(null, "Failed to update section details", "Error", JOptionPane.ERROR_MESSAGE);
-//		                                    }
+		                                    String[] data= {updatedSectionName,updatedSemester,updatedAcademicYear,updatedFacultyId};
+		                                    int updateResult = database.Database.upSec(sectionId, data);
+		                                    if (updateResult != -1) {
+		                                        JOptionPane.showMessageDialog(null, "Section details updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                                    } else {
+		                                        JOptionPane.showMessageDialog(null, "Failed to update section details", "Error", JOptionPane.ERROR_MESSAGE);
+		                                    }
 		                                }
 		                            }
 	                        	
