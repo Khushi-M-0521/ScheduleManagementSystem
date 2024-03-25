@@ -11,7 +11,7 @@ public class Database {
     static Statement stmt = null;
     static String DB_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
     static String USER = "sys as sysdba";
-    static String PASS = "12345678";
+    static String PASS = "Khushi0521";
     
     public static void createConnection() {
     	try {
@@ -404,7 +404,7 @@ public class Database {
 			classes[i][3]=rs.getString("BLOCK_ID");
 			classes[i][4]=rs.getString("DAYY");
 			classes[i][5]=rs.getString("TIMEE");
-			classes[i][6]=rs.getString("DURATION");
+			classes[i][6]=rs.getString("DURATIONN");
 			i++;
 		}
 		System.out.println(classes);

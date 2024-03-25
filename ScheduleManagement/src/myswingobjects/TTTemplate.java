@@ -50,7 +50,7 @@ public class TTTemplate extends ScreenTemplate{
 		TT.setBackground(Color.lightGray);
 		TT.setBounds(10,80,770,400);
 		TT.setLayout(null);
-		this.getContentPane().add(TT);
+		this.getContentPane().add(TT,JLayeredPane.DEFAULT_LAYER);
 		
 		tt=new JPanel();
 		//tt.setBackground(Color.lightGray);

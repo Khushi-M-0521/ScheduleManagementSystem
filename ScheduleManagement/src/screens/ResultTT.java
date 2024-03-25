@@ -45,7 +45,7 @@ public class ResultTT extends TTTemplate {
 					for(int k=0;k<TT.length;k++){
 						//System.out.println(day[i]+" "+time[j]);
 						if(TT[k][4].equals(day[i])  && TT[k][5].equals(time[j]) ) {
-							JLabel class_lab=new JLabel("<html>"+TT[k][0]+" "+TT[k][1]+"<br>"+TT[k][2]+" "+TT[k][3]+"<br>"+TT[k][4]+" "+TT[k][5]+"</html>");
+							JLabel class_lab=new JLabel("<html>"+TT[k][0]+"<br>"+TT[k][1]+"<br>"+TT[k][2]+" "+TT[k][3]+"</html>");
 							if(TT[k][6].equals("1"))
 								class_lab.setBounds(0, 0, 85, 63);
 							else {
@@ -60,7 +60,7 @@ public class ResultTT extends TTTemplate {
 							p[i][j].add(class_lab);
 							tt.add(p[i][j]);
 							System.out.println(class_lab.getText());
-							this.repaint();
+							//this.repaint();
 						}
 					}
 				}
