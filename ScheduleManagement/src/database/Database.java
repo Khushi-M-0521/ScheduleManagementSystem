@@ -467,7 +467,7 @@ public class Database {
     }
     
     public static String[][] subjAndHandlers(String sec_id){
-    	String query="SELECT S.SUB_CODE, S.SUB_ABBREVATION, S.SUB_NAME, H.FACULTY_ID"+
+    	String query="SELECT S.SUB_CODE, S.SUB_ABBREVATION, S.SUB_NAME, H.BATCH_ID,H.FACULTY_ID"+
 					" FROM HANDLES H, SUBJECT S"+
 					" WHERE SEC_ID=\'"+sec_id+"\'";
 	String classr[][] = null;
@@ -476,14 +476,15 @@ public class Database {
 		ResultSet rs=stmt.executeQuery(query);
 		int i=0;
 		while(rs.next()) i++;
-		classr=new String[i][4];
+		classr=new String[i][5];
 		i=0;
 		rs.beforeFirst();
 		while(rs.next()) {
 			classr[i][0]=rs.getString("SUB_CODE");
 			classr[i][1]=rs.getString("SUB_ABBREVATION");
 			classr[i][2]=rs.getString("SUB_NAME");
-			classr[i][2]=rs.getString("FACULTY_ID");
+			classr[i][3]=rs.getString("BATCH_ID");
+			classr[i][4]=rs.getString("FACULTY_ID");
 			i++;
 		}
 		System.out.println(classr);
